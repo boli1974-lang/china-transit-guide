@@ -1,4 +1,4 @@
-export interface ChinaTransitPort {
+﻿export interface ChinaTransitPort {
   region: string;
   portName: string;
   portType: 'airport' | 'seaport' | 'rail' | 'land';
@@ -91,9 +91,24 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
     portType: 'seaport',
     permittedStayArea: 'Shanghai Municipality',
     source: 'NIA 240-hour visa-free transit port list',
-  },  {
+  },
+  {
     region: 'Jiangsu',
     portName: 'Nanjing Lukou International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Jiangsu Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Jiangsu',
+    portName: 'Sunan Shuofang International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Jiangsu Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Jiangsu',
+    portName: 'Yangzhou Taizhou International Airport',
     portType: 'airport',
     permittedStayArea: 'Jiangsu Province',
     source: 'NIA 240-hour visa-free transit port list',
@@ -135,18 +150,33 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
   },
   {
     region: 'Zhejiang',
-    portName: 'Ningbo Port (Passenger)',
+    portName: 'Wenzhou Port (Passenger)',
     portType: 'seaport',
     permittedStayArea: 'Zhejiang Province',
     source: 'NIA 240-hour visa-free transit port list',
   },
   {
     region: 'Zhejiang',
-    portName: 'Wenzhou Port (Passenger)',
+    portName: 'Zhoushan Port (Passenger)',
     portType: 'seaport',
     permittedStayArea: 'Zhejiang Province',
     source: 'NIA 240-hour visa-free transit port list',
-  },  {
+  },
+  {
+    region: 'Anhui',
+    portName: 'Hefei Xinqiao International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Anhui Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Anhui',
+    portName: 'Huangshan Tunxi International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Anhui Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
     region: 'Fujian',
     portName: 'Fuzhou Changle International Airport',
     portType: 'airport',
@@ -162,9 +192,30 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
   },
   {
     region: 'Fujian',
+    portName: 'Quanzhou Jinjiang International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Fujian Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Fujian',
+    portName: 'Wuyishan Airport',
+    portType: 'airport',
+    permittedStayArea: 'Fujian Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Fujian',
     portName: 'Xiamen Port (Passenger)',
     portType: 'seaport',
     permittedStayArea: 'Fujian Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shandong',
+    portName: 'Jinan Yaoqiang International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Shandong Province',
     source: 'NIA 240-hour visa-free transit port list',
   },
   {
@@ -176,11 +227,26 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
   },
   {
     region: 'Shandong',
+    portName: 'Yantai Penglai International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Shandong Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shandong',
+    portName: 'Weihai Dashuibo International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Shandong Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shandong',
     portName: 'Qingdao Port (Passenger)',
     portType: 'seaport',
     permittedStayArea: 'Shandong Province',
     source: 'NIA 240-hour visa-free transit port list',
-  },  {
+  },
+  {
     region: 'Henan',
     portName: 'Zhengzhou Xinzheng International Airport',
     portType: 'airport',
@@ -198,6 +264,14 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
     region: 'Hunan',
     portName: 'Changsha Huanghua International Airport',
     portType: 'airport',
-    permittedStayArea: 'Changsha, Zhuzhou and Xiangtan',
+    permittedStayArea: 'Hunan Province',
     source: 'NIA 240-hour visa-free transit port list',
-  },];
+  },
+  {
+    region: 'Hunan',
+    portName: 'Zhangjiajie Hehua International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Hunan Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+];
