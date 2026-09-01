@@ -1565,11 +1565,22 @@ import PortTable from './PortTable.astro';
           body: new FormData(questionForm),
         });
 
-        const result = await response.json();
+        const responseText = await response.text();
+
+        let result;
+
+        try {
+          result = responseText
+            ? JSON.parse(responseText)
+            : {};
+        } catch {
+          result = {};
+        }
 
         if (!response.ok || !result.success) {
           throw new Error(
-            result.message || 'We could not send your question. Please try again.'
+            result.message ||
+              'We could not send your question. Please try again.'
           );
         }
 
