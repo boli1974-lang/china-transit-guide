@@ -1,4 +1,4 @@
-﻿export interface ChinaTransitPort {
+export interface ChinaTransitPort {
   region: string;
   portName: string;
   portType: 'airport' | 'seaport' | 'rail' | 'land';
@@ -50,4 +50,45 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
     permittedStayArea: 'Hebei Province',
     source: 'NIA 240-hour visa-free transit port list',
   },
-];
+  {
+    region: 'Liaoning',
+    portName: 'Shenyang Taoxian International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Liaoning Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Liaoning',
+    portName: 'Dalian Zhoushuizi International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Liaoning Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Liaoning',
+    portName: 'Dalian Port (Passenger)',
+    portType: 'seaport',
+    permittedStayArea: 'Liaoning Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shanghai',
+    portName: 'Shanghai Hongqiao International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Shanghai Municipality',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shanghai',
+    portName: 'Shanghai Pudong International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Shanghai Municipality',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shanghai',
+    portName: 'Shanghai Port (Passenger)',
+    portType: 'seaport',
+    permittedStayArea: 'Shanghai Municipality',
+    source: 'NIA 240-hour visa-free transit port list',
+  },];
