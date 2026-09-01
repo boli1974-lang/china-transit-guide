@@ -1,4 +1,4 @@
-﻿export interface ChinaTransitPort {
+export interface ChinaTransitPort {
   region: string;
   portName: string;
   portType: 'airport' | 'seaport' | 'rail' | 'land';
@@ -274,4 +274,83 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
     permittedStayArea: 'Hunan Province',
     source: 'NIA 240-hour visa-free transit port list',
   },
-];
+  {
+    region: 'Guangdong',
+    portName: 'Guangzhou Baiyun International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Shenzhen Baoan International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Jieyang Chaoshan International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Nansha Port (Passenger)',
+    portType: 'seaport',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Shekou Port (Passenger)',
+    portType: 'seaport',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Guangzhou Pazhou Ferry Terminal',
+    portType: 'seaport',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Zhongshan Port (Passenger)',
+    portType: 'seaport',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Hengqin Port',
+    portType: 'land',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'Hong Kong-Zhuhai-Macao Bridge Port',
+    portType: 'land',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Guangdong',
+    portName: 'West Kowloon Station Port of Guangzhou-Shenzhen-Hong Kong Express Rail Link',
+    portType: 'rail',
+    permittedStayArea: 'Guangdong Province',
+    notes: 'Travelers may exit through any open port in Guangdong Province.',
+    source: 'NIA 240-hour visa-free transit port list',
+  },];
