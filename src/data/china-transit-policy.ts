@@ -180,4 +180,24 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
     portType: 'seaport',
     permittedStayArea: 'Shandong Province',
     source: 'NIA 240-hour visa-free transit port list',
+  },  {
+    region: 'Henan',
+    portName: 'Zhengzhou Xinzheng International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Henan Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Hubei',
+    portName: 'Wuhan Tianhe International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Hubei Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Hunan',
+    portName: 'Changsha Huanghua International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Changsha, Zhuzhou and Xiangtan',
+    source: 'NIA 240-hour visa-free transit port list',
   },];
