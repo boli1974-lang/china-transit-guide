@@ -1,0 +1,26 @@
+﻿---
+import { chinaTransitPorts } from '../data/china-transit-policy';
+---
+
+<table class="port-table">
+  <thead>
+    <tr>
+      <th>Region</th>
+      <th>Eligible port</th>
+      <th>Port type</th>
+      <th>Permitted stay area</th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      chinaTransitPorts.map((port) => (
+        <tr>
+          <td>{port.region}</td>
+          <td>{port.portName}</td>
+          <td>{port.portType}</td>
+          <td>{port.permittedStayArea}</td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
