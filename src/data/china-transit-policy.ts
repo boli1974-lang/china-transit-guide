@@ -146,4 +146,38 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
     portType: 'seaport',
     permittedStayArea: 'Zhejiang Province',
     source: 'NIA 240-hour visa-free transit port list',
+  },  {
+    region: 'Fujian',
+    portName: 'Fuzhou Changle International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Fujian Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Fujian',
+    portName: 'Xiamen Gaoqi International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Fujian Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Fujian',
+    portName: 'Xiamen Port (Passenger)',
+    portType: 'seaport',
+    permittedStayArea: 'Fujian Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shandong',
+    portName: 'Qingdao Jiaodong International Airport',
+    portType: 'airport',
+    permittedStayArea: 'Shandong Province',
+    source: 'NIA 240-hour visa-free transit port list',
+  },
+  {
+    region: 'Shandong',
+    portName: 'Qingdao Port (Passenger)',
+    portType: 'seaport',
+    permittedStayArea: 'Shandong Province',
+    source: 'NIA 240-hour visa-free transit port list',
   },];
