@@ -1335,7 +1335,82 @@ import PortTable from './PortTable.astro';
 </section>
 
 <section>
-  <h2>Official Sources and Update History</h2>
+  <section class="question-section">
+  <h2>Have a Question About China Visa-Free Transit?</h2>
+
+  <p>
+    Send it to us below. We will do our best to research the answer, but we
+    cannot guarantee that we will be able to answer every question. If we find
+    an answer, we will email you at the address you provide.
+  </p>
+
+  <form class="question-form" action="/api/question" method="post">
+    <div class="form-field">
+      <label for="question-name">Name <span class="optional">(optional)</span></label>
+      <input
+        type="text"
+        id="question-name"
+        name="name"
+        autocomplete="name"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="question-email">Email address</label>
+      <input
+        type="email"
+        id="question-email"
+        name="email"
+        autocomplete="email"
+        required
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="question-text">Your question</label>
+      <textarea
+        id="question-text"
+        name="question"
+        rows="7"
+        required
+      ></textarea>
+    </div>
+
+    <div class="honeypot-field" aria-hidden="true">
+      <label for="question-website">Website</label>
+      <input
+        type="text"
+        id="question-website"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="permission-field">
+      <label>
+        <input
+          type="checkbox"
+          name="permissionToPublish"
+          value="yes"
+          checked
+        />
+        <span>
+          You may publish my question and your answer on this website.
+          My name and email address will not be published.
+        </span>
+      </label>
+
+      <p class="permission-note">
+        You can still submit your question if you leave this unchecked.
+      </p>
+    </div>
+
+        <button type="submit">Submit question</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+<h2>Official Sources and Update History</h2>
 
   <p><strong>Last verified: August 28, 2026</strong></p>
 
@@ -1462,6 +1537,66 @@ import PortTable from './PortTable.astro';
   </p>
 </section>
 
+
+<script>
+  const questionForm = document.querySelector('.question-form');
+  const formStatus = document.querySelector('.form-status');
+
+  if (
+    questionForm instanceof HTMLFormElement &&
+    formStatus instanceof HTMLElement
+  ) {
+    questionForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const submitButton = questionForm.querySelector('button[type="submit"]');
+
+      if (!(submitButton instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      formStatus.textContent = '';
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+
+      try {
+        const response = await fetch(questionForm.action, {
+          method: 'POST',
+          body: new FormData(questionForm),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(
+            result.message || 'We could not send your question. Please try again.'
+          );
+        }
+
+        formStatus.textContent =
+          result.message || 'Thank you. We received your question.';
+
+        questionForm.reset();
+
+        const permissionCheckbox = questionForm.querySelector(
+          'input[name="permissionToPublish"]'
+        );
+
+        if (permissionCheckbox instanceof HTMLInputElement) {
+          permissionCheckbox.checked = true;
+        }
+      } catch (error) {
+        formStatus.textContent =
+          error instanceof Error
+            ? error.message
+            : 'We could not send your question. Please try again.';
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit question';
+      }
+    });
+  }
+</script>
 </main>
 
 <style>
@@ -1597,4 +1732,103 @@ import PortTable from './PortTable.astro';
       font-size: 0.9rem;
     }
   }
+
+.question-section {
+  margin-top: 64px;
+  padding: 32px;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.question-section h2 {
+  margin-top: 0;
+}
+
+.question-form {
+  margin-top: 28px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.optional {
+  font-weight: 400;
+}
+
+.form-field input,
+.form-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #bfc4c9;
+  border-radius: 5px;
+  font: inherit;
+  background: #fff;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: 2px solid #1a73e8;
+  outline-offset: 1px;
+}
+
+.permission-field {
+  margin: 4px 0 24px;
+}
+
+.permission-field label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.permission-field input {
+  margin-top: 4px;
+}
+
+.permission-note {
+  margin: 7px 0 0 26px;
+  font-size: 0.9rem;
+}
+
+.question-form button {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 5px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+.honeypot-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-status {
+  margin-top: 14px;
+  font-weight: 600;
+}
+
+.question-form button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
 </style>
