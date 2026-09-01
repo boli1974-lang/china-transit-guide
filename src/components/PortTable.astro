@@ -1,26 +1,158 @@
-﻿---
+---
 import { chinaTransitPorts } from '../data/china-transit-policy';
+
+const groupedPorts = [...chinaTransitPorts].sort((a, b) => {
+  const regionCompare = a.region.localeCompare(b.region);
+
+  if (regionCompare !== 0) {
+    return regionCompare;
+  }
+
+  return a.portName.localeCompare(b.portName);
+});
+
+const regionRowSpans = groupedPorts.map((port, index) => {
+  if (index > 0 && groupedPorts[index - 1].region === port.region) {
+    return 0;
+  }
+
+  let span = 1;
+
+  for (let i = index + 1; i < groupedPorts.length; i++) {
+    if (groupedPorts[i].region !== port.region) break;
+    span++;
+  }
+
+  return span;
+});
+
+const areaRowSpans = groupedPorts.map((port, index) => {
+  if (
+    index > 0 &&
+    groupedPorts[index - 1].region === port.region &&
+    groupedPorts[index - 1].permittedStayArea === port.permittedStayArea
+  ) {
+    return 0;
+  }
+
+  let span = 1;
+
+  for (let i = index + 1; i < groupedPorts.length; i++) {
+    if (groupedPorts[i].region !== port.region) break;
+    if (groupedPorts[i].permittedStayArea !== port.permittedStayArea) break;
+    span++;
+  }
+
+  return span;
+});
 ---
 
-<table class="port-table">
-  <thead>
-    <tr>
-      <th>Region</th>
-      <th>Eligible port</th>
-      <th>Port type</th>
-      <th>Permitted stay area</th>
-    </tr>
-  </thead>
-  <tbody>
-    {
-      chinaTransitPorts.map((port) => (
-        <tr>
-          <td>{port.region}</td>
-          <td>{port.portName}</td>
-          <td>{port.portType}</td>
-          <td>{port.permittedStayArea}</td>
-        </tr>
-      ))
+<div class="table-wrapper">
+  <table class="port-table">
+    <thead>
+      <tr>
+        <th class="region-column">Region</th>
+        <th class="port-column">Eligible port</th>
+        <th class="type-column">Port type</th>
+        <th class="area-column">Permitted stay area</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        groupedPorts.map((port, index) => (
+          <tr>
+            {
+              regionRowSpans[index] > 0 && (
+                <td
+                  class="region-cell"
+                  rowspan={regionRowSpans[index]}
+                >
+                  {port.region}
+                </td>
+              )
+            }
+
+            <td>{port.portName}</td>
+
+            <td class="type-cell">{port.portType}</td>
+
+            {
+              areaRowSpans[index] > 0 && (
+                <td
+                  class="area-cell"
+                  rowspan={areaRowSpans[index]}
+                >
+                  {port.permittedStayArea}
+                </td>
+              )
+            }
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+
+  .port-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+
+  .port-table th,
+  .port-table td {
+    border: 1px solid #d8d8d8;
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.45;
+  }
+
+  .port-table th {
+    font-weight: 700;
+    background: #f7f7f7;
+  }
+
+  .region-column {
+    width: 14%;
+  }
+
+  .port-column {
+    width: 39%;
+  }
+
+  .type-column {
+    width: 12%;
+  }
+
+  .area-column {
+    width: 35%;
+  }
+
+  .region-cell,
+  .area-cell {
+    vertical-align: middle;
+  }
+
+  .type-cell {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 700px) {
+    .port-table {
+      min-width: 760px;
     }
-  </tbody>
-</table>
+
+    .port-table th,
+    .port-table td {
+      padding: 8px 10px;
+    }
+  }
+</style>
