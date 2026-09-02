@@ -23,6 +23,13 @@ const {
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
     <title>{title}</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQ6KRM5JJ3"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LQ6KRM5JJ3');
+    </script>
   </head>
   <body>
     <slot />
