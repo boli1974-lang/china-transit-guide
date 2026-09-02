@@ -6,6 +6,12 @@
 	],
 	"name": "china-transit-guide",
         "workers_dev": false,
+        "routes": [
+                {
+                        "pattern": "jadebound.com",
+                        "custom_domain": true
+                }
+        ],
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"assets": {
 		"directory": "./dist",
