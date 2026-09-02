@@ -2,11 +2,13 @@
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
 }
 
 const {
   title = 'China Transit Guide',
   description = 'China transit and visa-free travel information.',
+  canonical,
 } = Astro.props;
 ---
 
@@ -19,6 +21,7 @@ const {
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
     <title>{title}</title>
   </head>
   <body>
