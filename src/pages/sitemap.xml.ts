@@ -6,6 +6,9 @@ export function GET() {
   <url>
     <loc>https://jadebound.com/china-240-hour-visa-free-transit/</loc>
   </url>
+  <url>
+    <loc>https://jadebound.com/do-us-citizens-need-a-visa-for-china/</loc>
+  </url>
 </urlset>`;
 
   return new Response(sitemap, {
