@@ -1,0 +1,1296 @@
+---
+import { getData } from 'country-list';
+import {
+  chinaTransitEligibleCountries,
+  chinaTransitPorts,
+  chinaTransitPermittedAreas,
+} from '../data/china-transit-policy';
+
+const sortedCountries = [...chinaTransitEligibleCountries].sort((a, b) =>
+  a.localeCompare(b)
+);
+
+const sortedPorts = [...chinaTransitPorts].sort((a, b) =>
+  a.portName.localeCompare(b.portName)
+);
+
+const sortedPermittedAreas = [...chinaTransitPermittedAreas].sort((a, b) =>
+  a.region.localeCompare(b.region)
+);
+
+const routePlaceDisplayNames: Record<string, string> = {
+  CN: 'Mainland China',
+  HK: 'Hong Kong',
+  MO: 'Macao',
+  TW: 'Taiwan',
+  KR: 'South Korea',
+  KP: 'North Korea',
+};
+
+const routePlaces = getData()
+  .map((place) => ({
+    code: place.code,
+    name: routePlaceDisplayNames[place.code] ?? place.name,
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+---
+
+<section class="checker" id="itinerary-checker">
+  <div class="checker-header">
+    <p class="eyebrow">Interactive eligibility checker</p>
+    <h2>Check Your 240-Hour Transit Itinerary</h2>
+    <p>
+      Answer a few questions to see whether your trip appears to meet the
+      core published requirements for China's 240-hour visa-free transit policy.
+    </p>
+    <p class="checker-disclaimer">
+      This tool provides general information only. It does not guarantee airline
+      boarding or admission into China. Chinese immigration authorities make the
+      final decision.
+    </p>
+  </div>
+
+  <form id="transit-checker-form" novalidate>
+    <div class="progress" aria-label="Checker progress">
+      <span class="progress-step is-active" data-progress-step="1">1</span>
+      <span class="progress-line"></span>
+      <span class="progress-step" data-progress-step="2">2</span>
+      <span class="progress-line"></span>
+      <span class="progress-step" data-progress-step="3">3</span>
+      <span class="progress-line"></span>
+      <span class="progress-step" data-progress-step="4">4</span>
+    </div>
+
+    <section class="checker-step" data-step="1">
+      <p class="step-label">Step 1 of 4</p>
+      <h3>Your passport</h3>
+
+      <label>
+        Passport nationality
+        <select id="nationality" name="nationality" required>
+          <option value="">Select your nationality</option>
+          {
+            sortedCountries.map((country) => (
+              <option value={country}>{country}</option>
+            ))
+          }
+          <option value="__other__">Other nationality — not on current 240-hour list</option>
+        </select>
+      </label>
+
+      <p class="helper-text">
+        This list contains the nationalities currently eligible for the
+        240-hour visa-free transit policy. If you cannot find your nationality,
+        select “Other nationality — not on current 240-hour list.”
+      </p>
+
+      <label>
+        Passport expiration date
+        <input
+          id="passport-expiration"
+          name="passportExpirationDate"
+          type="date"
+          required
+        />
+      </label>
+
+      <div class="us-passport-note" id="us-passport-note" hidden>
+        <strong>U.S. passport holder?</strong>
+        Current U.S. travel guidance recommends at least six months of validity
+        beyond arrival and at least two blank passport pages.
+      </div>
+
+      <div class="step-actions">
+        <button type="button" class="primary-button" data-next-step>
+          Continue
+        </button>
+      </div>
+    </section>
+
+    <section class="checker-step" data-step="2" hidden>
+      <p class="step-label">Step 2 of 4</p>
+      <h3>Your international route</h3>
+
+      <p class="helper-text">
+        Enter the country or region immediately before Mainland China and the
+        country or region immediately after Mainland China. International
+        layovers matter.
+      </p>
+
+      <div class="route-display" aria-hidden="true">
+        <span>Country / Region A</span>
+        <strong>→ Mainland China →</strong>
+        <span>Country / Region B</span>
+      </div>
+
+      <label>
+        Immediately before Mainland China
+        <input
+          id="previous-country"
+          name="previousCountryOrRegion"
+          type="text"
+          list="route-places"
+          autocomplete="off"
+          placeholder="Example: Japan"
+          data-route-place
+          required
+        />
+      </label>
+
+      <label id="previous-country-other-wrap" hidden>
+        Enter the country or region name
+        <input
+          id="previous-country-other"
+          name="previousCountryOrRegionOther"
+          type="text"
+          autocomplete="off"
+          placeholder="Enter the actual country or region"
+          minlength="2"
+        />
+        <span class="helper-text">
+          Enter at least 2 characters and include the actual country or region name.
+        </span>
+      </label>
+
+      <label>
+        Immediately after Mainland China
+        <input
+          id="next-country"
+          name="nextCountryOrRegion"
+          type="text"
+          list="route-places"
+          autocomplete="off"
+          placeholder="Example: South Korea"
+          data-route-place
+          required
+        />
+      </label>
+
+      <label id="next-country-other-wrap" hidden>
+        Enter the country or region name
+        <input
+          id="next-country-other"
+          name="nextCountryOrRegionOther"
+          type="text"
+          autocomplete="off"
+          placeholder="Enter the actual country or region"
+          minlength="2"
+        />
+        <span class="helper-text">
+          Enter at least 2 characters and include the actual country or region name.
+        </span>
+      </label>
+
+      <p class="helper-text">
+        <strong>Important:</strong> You must already have confirmed onward
+        transportation from Mainland China to this country or region, with a
+        confirmed departure date and seat or booking. Without confirmed onward
+        transportation, you cannot rely on the 240-hour visa-free transit policy.
+      </p>
+
+      <p class="helper-text">
+        Start typing and select a country or region from the standardized list.
+        If your location is not listed, choose “Other / not listed.”
+      </p>
+
+      <datalist id="route-places">
+        {routePlaces.map((place) => <option value={place.name} />)}
+        <option value="Other / not listed" />
+      </datalist>
+
+      <p class="helper-text">
+        Hong Kong, Macao and Taiwan are listed separately from Mainland China
+        because they count as separate countries or regions for this transit-route test.
+      </p>
+
+      <div class="step-actions">
+        <button type="button" class="secondary-button" data-previous-step>
+          Back
+        </button>
+        <button type="button" class="primary-button" data-next-step>
+          Continue
+        </button>
+      </div>
+    </section>
+
+    <section class="checker-step" data-step="3" hidden>
+      <p class="step-label">Step 3 of 4</p>
+      <h3>Your China entry and departure</h3>
+
+      <label>
+        Entry port
+        <select id="entry-port" name="entryPort" required>
+          <option value="">Select an entry port</option>
+          {
+            sortedPorts.map((port) => (
+              <option value={port.portName}>
+                {port.portName} — {port.region}
+              </option>
+            ))
+          }
+        </select>
+      </label>
+
+      <label>
+        Arrival date
+        <input
+          id="arrival-datetime"
+          name="arrivalDateTime"
+          type="date"
+          required
+        />
+      </label>
+
+      <label>
+        Departure port
+        <select id="exit-port" name="exitPort" required>
+          <option value="">Select a departure port</option>
+          {
+            sortedPorts.map((port) => (
+              <option value={port.portName}>
+                {port.portName} — {port.region}
+              </option>
+            ))
+          }
+          <option value="__other__">Another port / not listed</option>
+        </select>
+      </label>
+
+      <label>
+        Departure date
+        <input
+          id="departure-datetime"
+          name="departureDateTime"
+          type="date"
+          required
+        />
+      </label>
+
+      <p class="helper-text">
+        Enter local China arrival and departure times.
+      </p>
+
+      <div class="step-actions">
+        <button type="button" class="secondary-button" data-previous-step>
+          Back
+        </button>
+        <button type="button" class="primary-button" data-next-step>
+          Continue
+        </button>
+      </div>
+    </section>
+
+    <section class="checker-step" data-step="4" hidden>
+      <p class="step-label">Step 4 of 4</p>
+      <h3>Travel area and onward documents</h3>
+
+      <fieldset>
+        <legend>
+          Will all of your travel in Mainland China stay within the currently
+          permitted areas?
+        </legend>
+
+        <details class="area-details">
+          <summary>View the 24 participating regions and permitted areas</summary>
+          <div class="area-list">
+            {
+              sortedPermittedAreas.map((area) => (
+                <div class="area-item">
+                  <strong>{area.region}</strong>
+                  <span>{area.permittedStayArea}</span>
+                </div>
+              ))
+            }
+          </div>
+        </details>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="staysWithinPermittedAreas"
+            value="yes"
+            required
+          />
+          Yes
+        </label>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="staysWithinPermittedAreas"
+            value="no"
+          />
+          No
+        </label>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="staysWithinPermittedAreas"
+            value="unsure"
+          />
+          I'm not sure
+        </label>
+      </fieldset>
+<fieldset>
+        <legend>
+          Are you legally able to enter your onward country or region?
+        </legend>
+
+        <p class="helper-text">
+          For example, if that destination requires a visa, ETA, or other
+          travel authorization for your nationality, you should already meet
+          that requirement. This is separate from the China transit-route test.
+        </p>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="canEnterOnwardDestination"
+            value="yes"
+            required
+          />
+          Yes
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="canEnterOnwardDestination" value="no" />
+          No
+        </label>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="canEnterOnwardDestination"
+            value="unsure"
+          />
+          I'm not sure
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>
+          Do you have circumstances that may require individual immigration
+          review, such as a recent Chinese visa refusal or prior Chinese
+          immigration violation?
+        </legend>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="specialReviewCircumstances"
+            value="no"
+            required
+          />
+          No
+        </label>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="specialReviewCircumstances"
+            value="yes"
+          />
+          Yes
+        </label>
+
+        <label class="radio-option">
+          <input
+            type="radio"
+            name="specialReviewCircumstances"
+            value="unsure"
+          />
+          I'm not sure
+        </label>
+      </fieldset>
+
+      <div class="step-actions">
+        <button type="button" class="secondary-button" data-previous-step>
+          Back
+        </button>
+        <button type="submit" class="primary-button">
+          Check my itinerary
+        </button>
+      </div>
+    </section>
+  </form>
+
+  <section id="checker-result" class="checker-result" hidden aria-live="polite">
+    <div id="result-heading"></div>
+    <div id="result-summary"></div>
+    <div id="result-rules"></div>
+
+    <div class="result-actions">
+      <button type="button" class="secondary-button" id="edit-itinerary">
+        Edit itinerary
+      </button>
+      <button type="button" class="secondary-button" id="start-over">
+        Start over
+      </button>
+    </div>
+
+    <p class="checker-disclaimer">
+      This checker is informational. It does not guarantee airline boarding or
+      admission into China. Immigration authorities make the final decision.
+    </p>
+  </section>
+</section>
+
+<script>
+  import {
+    evaluateTransitEligibility,
+    type TransitAnswer,
+  } from '../lib/transit-eligibility';
+
+  const form = document.querySelector<HTMLFormElement>('#transit-checker-form');
+  const resultContainer =
+    document.querySelector<HTMLElement>('#checker-result');
+
+  if (form && resultContainer) {
+    let currentStep = 1;
+
+    const steps = Array.from(
+      form.querySelectorAll<HTMLElement>('[data-step]')
+    );
+
+    const progressSteps = Array.from(
+      form.querySelectorAll<HTMLElement>('[data-progress-step]')
+    );
+
+    const routePlaceValues = new Set<string>();
+
+    form.querySelectorAll('#route-places option').forEach((option: any) => {
+      routePlaceValues.add(String(option.value).trim());
+    });
+
+    const routePlaceInputs = [
+      form.querySelector('#previous-country') as any,
+      form.querySelector('#next-country') as any,
+    ].filter(Boolean);
+
+    const validateRoutePlace = (input: any) => {
+      const value = String(input.value ?? '').trim();
+
+      if (!value) {
+        input.setCustomValidity('');
+        return;
+      }
+
+      if (routePlaceValues.has(value)) {
+        input.setCustomValidity('');
+      } else {
+        input.setCustomValidity(
+          'Please select a country or region from the list, or choose “Other / not listed.”'
+        );
+      }
+    };
+
+    for (const input of routePlaceInputs) {
+      input.addEventListener('input', () => validateRoutePlace(input));
+      input.addEventListener('change', () => validateRoutePlace(input));
+      input.addEventListener('blur', () => validateRoutePlace(input));
+    }
+
+    const previousRouteInput =
+      form.querySelector('#previous-country') as any;
+
+    const nextRouteInput =
+      form.querySelector('#next-country') as any;
+
+    const previousOtherWrap =
+      form.querySelector('#previous-country-other-wrap') as any;
+
+    const nextOtherWrap =
+      form.querySelector('#next-country-other-wrap') as any;
+
+    const previousOtherInput =
+      form.querySelector('#previous-country-other') as any;
+
+    const nextOtherInput =
+      form.querySelector('#next-country-other') as any;
+
+    const validateManualRouteInput = (input: any) => {
+      if (!input || !input.required) {
+        input?.setCustomValidity('');
+        return true;
+      }
+
+      const value = String(input.value ?? '').trim();
+
+      if (!value) {
+        input.setCustomValidity(
+          'Please enter the actual country or region name.'
+        );
+        return false;
+      }
+
+      if (value.length < 2) {
+        input.setCustomValidity(
+          'Please enter at least 2 characters.'
+        );
+        return false;
+      }
+
+      if (value.length > 80) {
+        input.setCustomValidity(
+          'Please keep the country or region name under 80 characters.'
+        );
+        return false;
+      }
+
+      if (!/\p{L}/u.test(value)) {
+        input.setCustomValidity(
+          'Please enter a country or region name containing letters.'
+        );
+        return false;
+      }
+
+      input.setCustomValidity('');
+      return true;
+    };
+
+    const syncOtherRouteField = (
+      routeInput: any,
+      wrapper: any,
+      manualInput: any
+    ) => {
+      if (!routeInput || !wrapper || !manualInput) return;
+
+      const isOther =
+        String(routeInput.value ?? '').trim() === 'Other / not listed';
+
+      wrapper.hidden = !isOther;
+      manualInput.required = isOther;
+
+      if (!isOther) {
+        manualInput.value = '';
+        manualInput.setCustomValidity('');
+      } else {
+        validateManualRouteInput(manualInput);
+      }
+    };
+
+    const syncOtherRouteFields = () => {
+      syncOtherRouteField(
+        previousRouteInput,
+        previousOtherWrap,
+        previousOtherInput
+      );
+
+      syncOtherRouteField(
+        nextRouteInput,
+        nextOtherWrap,
+        nextOtherInput
+      );
+    };
+
+    previousRouteInput?.addEventListener(
+      'input',
+      syncOtherRouteFields
+    );
+
+    previousRouteInput?.addEventListener(
+      'change',
+      syncOtherRouteFields
+    );
+
+    nextRouteInput?.addEventListener(
+      'input',
+      syncOtherRouteFields
+    );
+
+    nextRouteInput?.addEventListener(
+      'change',
+      syncOtherRouteFields
+    );
+
+    previousOtherInput?.addEventListener('input', () => {
+      validateManualRouteInput(previousOtherInput);
+    });
+
+    previousOtherInput?.addEventListener('blur', () => {
+      validateManualRouteInput(previousOtherInput);
+    });
+
+    nextOtherInput?.addEventListener('input', () => {
+      validateManualRouteInput(nextOtherInput);
+    });
+
+    nextOtherInput?.addEventListener('blur', () => {
+      validateManualRouteInput(nextOtherInput);
+    });
+
+    syncOtherRouteFields();
+
+    const showStep = (stepNumber: number) => {
+      currentStep = stepNumber;
+
+      for (const step of steps) {
+        step.hidden = Number(step.dataset.step) !== stepNumber;
+      }
+
+      for (const progressStep of progressSteps) {
+        const number = Number(progressStep.dataset.progressStep);
+
+        progressStep.classList.toggle('is-active', number === stepNumber);
+        progressStep.classList.toggle('is-complete', number < stepNumber);
+      }
+    };
+
+    const validateCurrentStep = () => {
+      const step = steps.find(
+        (item) => Number(item.dataset.step) === currentStep
+      );
+
+      if (!step) return false;
+
+      if (currentStep === 2) {
+        for (const input of routePlaceInputs) {
+          validateRoutePlace(input);
+
+          if (!input.checkValidity()) {
+            input.reportValidity();
+            return false;
+          }
+        }
+
+        for (const input of [
+          previousOtherInput,
+          nextOtherInput,
+        ]) {
+          if (input?.required) {
+            validateManualRouteInput(input);
+
+            if (!input.checkValidity()) {
+              input.reportValidity();
+              return false;
+            }
+          }
+        }
+      }
+
+      const requiredFields = Array.from(
+        step.querySelectorAll('[required]')
+      ) as any[];
+
+      for (const field of requiredFields) {
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    form.querySelectorAll('[data-next-step]').forEach((button) => {
+      button.addEventListener('click', () => {
+        if (!validateCurrentStep()) return;
+
+        showStep(Math.min(4, currentStep + 1));
+      });
+    });
+
+    form.querySelectorAll('[data-previous-step]').forEach((button) => {
+      button.addEventListener('click', () => {
+        showStep(Math.max(1, currentStep - 1));
+      });
+    });
+
+    const nationality = form.querySelector('#nationality') as any;
+
+    const usPassportNote =
+      form.querySelector<HTMLElement>('#us-passport-note');
+
+    const pickerOnlyDateTimes = [
+      form.querySelector('#arrival-datetime') as any,
+      form.querySelector('#departure-datetime') as any,
+    ].filter(Boolean);
+
+    const openDateTimePicker = (input: any) => {
+      try {
+        input.showPicker?.();
+      } catch {
+        // The browser will fall back to its normal date/time control.
+      }
+    };
+
+    for (const input of pickerOnlyDateTimes) {
+      input.addEventListener('click', () => {
+        openDateTimePicker(input);
+      });
+
+      input.addEventListener('keydown', (event: any) => {
+        if (
+          event.key === 'Tab' ||
+          event.key === 'Shift' ||
+          event.key === 'Escape'
+        ) {
+          return;
+        }
+
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openDateTimePicker(input);
+          return;
+        }
+
+        event.preventDefault();
+      });
+
+      input.addEventListener('paste', (event: any) => {
+        event.preventDefault();
+      });
+
+      input.addEventListener('drop', (event: any) => {
+        event.preventDefault();
+      });
+    }
+
+    nationality?.addEventListener('change', () => {
+      if (usPassportNote) {
+        usPassportNote.hidden = nationality.value !== 'United States';
+      }
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const data = new FormData(form);
+
+      const selectedNationality = String(data.get('nationality') ?? '');
+
+      const selectedEntryPort = String(data.get('entryPort') ?? '');
+      const selectedExitPort = String(data.get('exitPort') ?? '');
+
+      const previousRouteSelection = String(
+        data.get('previousCountryOrRegion') ?? ''
+      ).trim();
+
+      const nextRouteSelection = String(
+        data.get('nextCountryOrRegion') ?? ''
+      ).trim();
+
+      const previousRouteIsUnlisted =
+        previousRouteSelection === 'Other / not listed';
+
+      const nextRouteIsUnlisted =
+        nextRouteSelection === 'Other / not listed';
+
+      const previousRouteValue = previousRouteIsUnlisted
+        ? String(
+            data.get('previousCountryOrRegionOther') ?? ''
+          ).trim()
+        : previousRouteSelection;
+
+      const nextRouteValue = nextRouteIsUnlisted
+        ? String(
+            data.get('nextCountryOrRegionOther') ?? ''
+          ).trim()
+        : nextRouteSelection;
+
+      const result = evaluateTransitEligibility({
+        nationality:
+          selectedNationality === '__other__'
+            ? 'Other nationality'
+            : selectedNationality,
+
+        passportExpirationDate: String(
+          data.get('passportExpirationDate') ?? ''
+        ),
+
+        previousCountryOrRegion: previousRouteValue,
+        nextCountryOrRegion: nextRouteValue,
+
+        previousCountryOrRegionIsUnlisted:
+          previousRouteIsUnlisted,
+
+        nextCountryOrRegionIsUnlisted:
+          nextRouteIsUnlisted,
+
+        entryPort: selectedEntryPort,
+
+        exitPort:
+          selectedExitPort === '__other__'
+            ? 'Other / unlisted port'
+            : selectedExitPort,
+
+        arrivalDateTime: String(data.get('arrivalDateTime') ?? ''),
+
+        departureDateTime: String(data.get('departureDateTime') ?? ''),
+
+        staysWithinPermittedAreas: String(
+          data.get('staysWithinPermittedAreas') ?? 'unsure'
+        ) as TransitAnswer,
+canEnterOnwardDestination: String(
+          data.get('canEnterOnwardDestination') ?? 'unsure'
+        ) as TransitAnswer,
+
+        specialReviewCircumstances: String(
+          data.get('specialReviewCircumstances') ?? 'unsure'
+        ) as TransitAnswer,
+      });
+
+      const heading = document.querySelector<HTMLElement>('#result-heading');
+      const summary = document.querySelector<HTMLElement>('#result-summary');
+      const rules = document.querySelector<HTMLElement>('#result-rules');
+
+      if (!heading || !summary || !rules) return;
+
+      resultContainer.classList.remove(
+        'result-pass',
+        'result-fail',
+        'result-review'
+      );
+
+      resultContainer.classList.add(`result-${result.status}`);
+
+      if (result.status === 'pass') {
+        heading.innerHTML =
+          '<h3>Your itinerary appears to pass the core checks</h3>';
+
+        summary.innerHTML =
+          '<p>Your answers appear to meet the core published requirements checked by this tool.</p>';
+      } else if (result.status === 'fail') {
+        heading.innerHTML =
+          '<h3>Your itinerary does not appear to meet the 240-hour requirements</h3>';
+
+        summary.innerHTML =
+          '<p>One or more core checks did not pass. Review the details below.</p>';
+      } else {
+        heading.innerHTML =
+          '<h3>Your itinerary needs additional verification</h3>';
+
+        summary.innerHTML =
+          '<p>We cannot confirm this itinerary from the information provided. Review the items marked below before relying on the policy.</p>';
+      }
+
+      summary.insertAdjacentHTML(
+        'beforeend',
+        '<p><strong>Confirmed onward travel required:</strong> This checker does not verify your ticket or booking. To use the 240-hour visa-free transit policy, you must have confirmed onward transportation from Mainland China to the country or region you entered above, with a confirmed departure date and seat or booking.</p>'
+      );
+
+      if (result.deadlineChinaDateTimeDisplay) {
+        summary.insertAdjacentHTML(
+          'beforeend',
+          `<p><strong>Your calculated departure deadline:</strong> ${result.deadlineChinaDateTimeDisplay} China time</p>`
+        );
+      }
+
+      rules.innerHTML = '';
+
+      for (const rule of result.rules) {
+        const item = document.createElement('div') as any;
+
+        item.className = `rule-result rule-${rule.status}`;
+
+        const symbol =
+          rule.status === 'pass'
+            ? '✓'
+            : rule.status === 'fail'
+              ? '✕'
+              : '!';
+
+        const title = document.createElement('div') as any;
+        title.className = 'rule-title';
+
+        const symbolElement = document.createElement('span') as any;
+        symbolElement.className = 'rule-symbol';
+        symbolElement.textContent = symbol;
+
+        const label = document.createElement('strong') as any;
+        label.textContent = rule.label;
+
+        title.append(symbolElement, label);
+
+        const message = document.createElement('p') as any;
+        message.textContent = rule.message;
+
+        item.append(title, message);
+        rules.appendChild(item);
+      }
+
+      form.hidden = true;
+      resultContainer.hidden = false;
+
+      resultContainer.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+
+    document
+      .querySelector<HTMLButtonElement>('#edit-itinerary')
+      ?.addEventListener('click', () => {
+        resultContainer.hidden = true;
+        form.hidden = false;
+        showStep(1);
+
+        form.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+
+    document
+      .querySelector<HTMLButtonElement>('#start-over')
+      ?.addEventListener('click', () => {
+        form.reset();
+
+        if (usPassportNote) {
+          usPassportNote.hidden = true;
+        }
+
+        syncOtherRouteFields();
+
+        resultContainer.hidden = true;
+        form.hidden = false;
+        showStep(1);
+
+        form.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+  }
+</script>
+
+<style>
+  [hidden] {
+    display: none !important;
+  }
+
+  .checker {
+    margin: 32px 0 48px;
+    padding: 28px;
+    border: 1px solid #d8d8d8;
+    border-radius: 14px;
+    background: #ffffff;
+  }
+
+  .checker-header {
+    margin-bottom: 28px;
+  }
+
+  .checker-header h2 {
+    margin-top: 4px;
+  }
+
+  .eyebrow,
+  .step-label {
+    margin: 0 0 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .checker-disclaimer,
+  .helper-text {
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .checker-disclaimer {
+    padding: 12px 14px;
+    background: #f7f7f7;
+    border-radius: 8px;
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .progress-step {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 32px;
+    border: 2px solid #c9c9c9;
+    border-radius: 50%;
+    font-weight: 700;
+    background: #fff;
+  }
+
+  .progress-step.is-active,
+  .progress-step.is-complete {
+    border-color: #222;
+  }
+
+  .progress-step.is-active {
+    background: #222;
+    color: #fff;
+  }
+
+  .progress-line {
+    height: 2px;
+    flex: 1;
+    background: #d8d8d8;
+  }
+
+  .checker-step h3 {
+    margin-top: 0;
+  }
+
+  .checker label:not(.radio-option) {
+    display: block;
+    margin: 18px 0;
+    font-weight: 600;
+  }
+
+  .checker input[type='text'],
+  .checker input[type='date'],
+  .checker input[type='datetime-local'],
+  .checker select {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 7px;
+    padding: 11px 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 7px;
+    background: #fff;
+    font: inherit;
+  }
+
+  .checker select {
+    appearance: none;
+    padding-right: 42px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%231a1a1a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 12px 8px;
+  }
+
+  .checker fieldset {
+    margin: 24px 0;
+    padding: 18px;
+    border: 1px solid #d8d8d8;
+    border-radius: 9px;
+  }
+
+  .checker legend {
+    padding: 0 6px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .radio-option {
+    display: block;
+    margin: 12px 0;
+    font-weight: 400;
+  }
+
+  .radio-option input {
+    margin-right: 8px;
+  }
+
+  .route-display {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 14px;
+    background: #f7f7f7;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .us-passport-note {
+    margin: 16px 0;
+    padding: 12px 14px;
+    border-left: 4px solid #777;
+    background: #f7f7f7;
+  }
+
+  .area-details {
+    margin: 14px 0 18px;
+  }
+
+  .area-details summary {
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .area-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 18px;
+    margin-top: 14px;
+  }
+
+  .area-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #ececec;
+  }
+
+  .area-item strong,
+  .area-item span {
+    display: block;
+  }
+
+  .area-item span {
+    margin-top: 3px;
+    font-size: 0.9rem;
+  }
+
+  .step-actions,
+  .result-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    padding: 11px 17px;
+    border-radius: 7px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .primary-button {
+    border: 1px solid #222;
+    background: #222;
+    color: #fff;
+  }
+
+  .secondary-button {
+    border: 1px solid #bdbdbd;
+    background: #fff;
+    color: #222;
+  }
+
+  .checker-result {
+    scroll-margin-top: 24px;
+  }
+
+  .checker-result h3 {
+    margin-top: 0;
+  }
+
+  .rule-result {
+    margin: 14px 0;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+
+  .rule-title {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+  }
+
+  .rule-result p {
+    margin: 7px 0 0 29px;
+  }
+
+  .rule-symbol {
+    width: 20px;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  .rule-pass {
+    border-left: 4px solid #2d7a42;
+  }
+
+  .rule-fail {
+    border-left: 4px solid #a53939;
+  }
+
+  .rule-review {
+    border-left: 4px solid #9a7217;
+  }
+
+  @media (max-width: 700px) {
+    .checker {
+      padding: 20px 16px;
+    }
+
+    .route-display {
+      flex-direction: column;
+    }
+
+    .area-list {
+      grid-template-columns: 1fr;
+    }
+
+    .step-actions,
+    .result-actions {
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+      width: 100%;
+    }
+  }
+</style>
+<style is:global>
+  .checker-result.result-pass {
+    padding: 20px;
+    border: 2px solid #2d7a42;
+    border-radius: 10px;
+    background: #f1f8f3;
+  }
+
+  .checker-result.result-review {
+    padding: 20px;
+    border: 2px solid #a77a12;
+    border-radius: 10px;
+    background: #fff9e8;
+  }
+
+  .checker-result.result-fail {
+    padding: 20px;
+    border: 2px solid #a53939;
+    border-radius: 10px;
+    background: #fff3f3;
+  }
+
+  .rule-result {
+    margin: 14px 0;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .rule-result.rule-pass {
+    border-left: 4px solid #2d7a42;
+  }
+
+  .rule-result.rule-review {
+    border-left: 4px solid #a77a12;
+    background: #fffdf5;
+  }
+
+  .rule-result.rule-fail {
+    border-left: 4px solid #a53939;
+    background: #fff8f8;
+  }
+
+  .rule-pass .rule-symbol {
+    color: #2d7a42;
+  }
+
+  .rule-review .rule-symbol {
+    color: #8a650f;
+  }
+
+  .rule-fail .rule-symbol {
+    color: #a53939;
+  }
+</style>

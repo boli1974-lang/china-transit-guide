@@ -16,13 +16,17 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.2.6",
-    "astro": "^7.2.10"
+    "astro": "^7.2.10",
+    "country-list": "^2.4.1"
   },
   "allowScripts": {
     "esbuild": true
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@types/node": "^26.4.0",
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3",
     "wrangler": "^4.127.1"
   }
 }

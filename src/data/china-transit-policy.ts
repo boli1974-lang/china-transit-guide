@@ -7,6 +7,68 @@ export interface ChinaTransitPort {
   source: string;
 }
 
+export const CHINA_TRANSIT_POLICY_HOURS = 240;
+export const CHINA_TRANSIT_MIN_DOCUMENT_VALIDITY_MONTHS = 3;
+
+export const chinaTransitEligibleCountries = [
+  'Albania',
+  'Argentina',
+  'Australia',
+  'Austria',
+  'Belarus',
+  'Belgium',
+  'Bosnia and Herzegovina',
+  'Brazil',
+  'Brunei',
+  'Bulgaria',
+  'Canada',
+  'Chile',
+  'Croatia',
+  'Cyprus',
+  'Czech Republic',
+  'Denmark',
+  'Estonia',
+  'Finland',
+  'France',
+  'Germany',
+  'Greece',
+  'Hungary',
+  'Iceland',
+  'Indonesia',
+  'Ireland',
+  'Italy',
+  'Japan',
+  'Kyrgyzstan',
+  'Latvia',
+  'Lithuania',
+  'Luxembourg',
+  'Malta',
+  'Mexico',
+  'Monaco',
+  'Montenegro',
+  'Netherlands',
+  'New Zealand',
+  'North Macedonia',
+  'Norway',
+  'Poland',
+  'Portugal',
+  'Qatar',
+  'Romania',
+  'Russia',
+  'Serbia',
+  'Singapore',
+  'Slovakia',
+  'Slovenia',
+  'South Korea',
+  'Spain',
+  'Sweden',
+  'Switzerland',
+  'Ukraine',
+  'United Arab Emirates',
+  'United Kingdom',
+  'United States',
+  'Vietnam',
+] as const;
 export const chinaTransitPorts: ChinaTransitPort[] = [
   {
     region: 'Beijing',
@@ -472,3 +534,14 @@ export const chinaTransitPorts: ChinaTransitPort[] = [
     permittedStayArea: 'Nanning, Liuzhou, Guilin, Wuzhou, Beihai, Fangchenggang, Qinzhou, Guigang, Yulin, Hezhou, Hechi and Laibin',
     source: 'NIA 240-hour visa-free transit port list',
   },];
+export const chinaTransitPermittedAreas = Array.from(
+  new Map(
+    chinaTransitPorts.map((port) => [
+      port.region,
+      {
+        region: port.region,
+        permittedStayArea: port.permittedStayArea,
+      },
+    ])
+  ).values()
+);
