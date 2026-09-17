@@ -9,6 +9,9 @@ export function GET() {
   <url>
     <loc>https://jadebound.com/do-us-citizens-need-a-visa-for-china/</loc>
   </url>
+  <url>
+    <loc>https://jadebound.com/canton-fair-visa-guide/</loc>
+  </url>
 </urlset>`;
 
   return new Response(sitemap, {
