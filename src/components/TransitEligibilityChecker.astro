@@ -753,6 +753,78 @@ const routePlaces = getData()
       }
     });
 
+const getAnonymousSessionId = () => {
+  const key = 'jadebound_checker_session_id';
+
+  let value = sessionStorage.getItem(key);
+
+  if (!value) {
+    value = crypto.randomUUID();
+    sessionStorage.setItem(key, value);
+  }
+
+  return value;
+};
+
+const getNextSearchSequence = () => {
+  const key = 'jadebound_checker_search_sequence';
+
+  const current = Number(sessionStorage.getItem(key) ?? '0');
+  const next = current + 1;
+
+  sessionStorage.setItem(key, String(next));
+
+  return next;
+};
+
+const getDeviceType = () => {
+  const navigatorWithUserAgentData = navigator as Navigator & {
+    userAgentData?: {
+      mobile?: boolean;
+    };
+  };
+
+  if (navigatorWithUserAgentData.userAgentData?.mobile === true) {
+    return 'mobile';
+  }
+
+  const userAgent = navigator.userAgent;
+
+  if (
+    /iPad|Tablet|PlayBook|Silk/i.test(userAgent) ||
+    (/Android/i.test(userAgent) && !/Mobile/i.test(userAgent))
+  ) {
+    return 'tablet';
+  }
+
+  if (
+    /Mobi|Android|iPhone|iPod|IEMobile|Opera Mini/i.test(userAgent)
+  ) {
+    return 'mobile';
+  }
+
+  return 'desktop';
+};
+const getUtmParameter = (name: string) => {
+  const params = new URLSearchParams(window.location.search);
+  return params.get(name) ?? undefined;
+};
+
+const logCheckerSearch = async (payload: Record<string, unknown>) => {
+  try {
+    await fetch('/api/checker-log', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    });
+  } catch (error) {
+    console.warn('Checker analytics logging failed', error);
+  }
+};
+
     form.addEventListener('submit', (event) => {
       event.preventDefault();
 
@@ -835,6 +907,70 @@ canEnterOnwardDestination: String(
           data.get('specialReviewCircumstances') ?? 'unsure'
         ) as TransitAnswer,
       });
+
+const anonymousSessionId = getAnonymousSessionId();
+const searchSequence = getNextSearchSequence();
+
+void logCheckerSearch({
+  anonymousSessionId,
+  searchSequence,
+
+  passportCountry:
+    selectedNationality === '__other__'
+      ? 'Other nationality'
+      : selectedNationality,
+
+  passportExpirationDate: String(
+    data.get('passportExpirationDate') ?? ''
+  ),
+
+  previousCountryOrRegion: previousRouteValue,
+  previousCountryOrRegionIsUnlisted: previousRouteIsUnlisted,
+
+  nextCountryOrRegion: nextRouteValue,
+  nextCountryOrRegionIsUnlisted: nextRouteIsUnlisted,
+
+  entryPort: selectedEntryPort,
+
+  exitPort:
+    selectedExitPort === '__other__'
+      ? 'Other / unlisted port'
+      : selectedExitPort,
+
+  arrivalDate: String(data.get('arrivalDateTime') ?? ''),
+  departureDate: String(data.get('departureDateTime') ?? ''),
+
+  staysWithinPermittedAreas: String(
+    data.get('staysWithinPermittedAreas') ?? 'unsure'
+  ),
+
+  canEnterOnwardDestination: String(
+    data.get('canEnterOnwardDestination') ?? 'unsure'
+  ),
+
+  specialReviewCircumstances: String(
+    data.get('specialReviewCircumstances') ?? 'unsure'
+  ),
+
+  overallStatus: result.status,
+
+  rules: result.rules.map((rule) => ({
+    id: rule.id,
+    status: rule.status,
+  })),
+
+  checkerVersion: '1.0',
+  rulesVersion: '2026-09-22',
+
+  entryPage: window.location.pathname,
+  referrer: document.referrer || undefined,
+
+  utmSource: getUtmParameter('utm_source'),
+  utmMedium: getUtmParameter('utm_medium'),
+  utmCampaign: getUtmParameter('utm_campaign'),
+
+  deviceType: getDeviceType(),
+});
 
       const heading = document.querySelector<HTMLElement>('#result-heading');
       const summary = document.querySelector<HTMLElement>('#result-summary');
