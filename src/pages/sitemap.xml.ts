@@ -15,6 +15,9 @@ export function GET() {
   <url>
     <loc>https://jadebound.com/ciie-visa-guide/</loc>
   </url>
+  <url>
+    <loc>https://jadebound.com/china-hi-tech-fair-visa-guide/</loc>
+  </url>
 </urlset>`;
 
   return new Response(sitemap, {
