@@ -24,6 +24,9 @@ export function GET() {
   <url>
     <loc>https://jadebound.com/airshow-china-visa-travel-guide/</loc>
   </url>
+  <url>
+    <loc>https://jadebound.com/automechanika-shanghai-visa-travel-guide/</loc>
+  </url>
 </urlset>`;
 
   return new Response(sitemap, {
