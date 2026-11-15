@@ -36,8 +36,8 @@ const faqs = [
   ['Is Automechanika Shanghai free to attend?', 'Yes. The current organizer page lists free admission for trade visitors aged 18 or older.'],
   ['Is visitor preregistration still open?', 'Yes. As of November 14, 2026, the official visitor page still shows preregistration as open. Register as soon as possible.'],
   ['Does the October 31 date mean registration is closed?', 'No. October 31 was connected to the free official e-fair catalogue promotion. General visitor preregistration remains open as of November 14.'],
-  ['Can I attend Automechanika Shanghai without a Chinese visa?', 'Possibly. Your passport may qualify for current 30-day visa-free entry, or your nationality and itinerary may qualify for 240-hour visa-free transit.'],
-  ['Can U.S. citizens attend using 240-hour visa-free transit?', 'Potentially. U.S. ordinary-passport holders are an eligible nationality, but their itinerary and other conditions must meet the transit requirements.'],
+  ['Can I attend Automechanika Shanghai without a Chinese visa?', "Possibly. Your passport may qualify for China's current 30-day visa-free entry policy, or your nationality and itinerary may qualify for 240-hour visa-free transit.", 'guide'],
+  ['Can U.S. citizens attend using 240-hour visa-free transit?', 'Potentially. U.S. ordinary-passport holders are currently an eligible nationality, but their itinerary and other conditions must also meet the transit requirements.', 'checker'],
   ["Is the United States covered by China's 30-day visa-free policy?", 'No. The United States is not on the current general unilateral 30-day visa-free list.'],
   ['Can I still request a visa invitation letter?', 'The official 2026 form gives an October 30 submission deadline and also lists expedited processing for October 31–November 6. Both dates have passed. Contact Shanghai Vision immediately to ask about a late request; acceptance is not guaranteed.'],
   ['Which airport is closest to Automechanika Shanghai?', 'Shanghai Hongqiao International Airport is much closer to NECC than Pudong Airport.'],
@@ -99,10 +99,10 @@ const faqs = [
     <h2 id="china-entry">Do You Need a Chinese Visa to Attend Automechanika Shanghai?</h2>
     <p><strong>Not necessarily.</strong> There are three common cases:</p>
     <h3>1. 30-day visa-free entry</h3>
-    <p>China allows covered ordinary-passport holders to visit visa-free for up to <strong>30 days</strong> for business, tourism, visits, exchange and transit, including attending exhibitions. Examples include the <strong>United Kingdom, Canada, Australia, New Zealand, Japan, South Korea, Germany and France</strong>, plus many other European countries.</p>
+    <p>China allows covered ordinary-passport holders to visit visa-free for up to <strong>30 days</strong> for business, tourism, visits, exchange and transit, including attending exhibitions. Ordinary-passport holders from countries including the <strong>United Kingdom, Canada, Australia, New Zealand, Japan, South Korea, Germany and France</strong> are currently eligible, along with travelers from many other European countries.</p>
     <p>The <a href={mfa} target="_blank" rel="noopener noreferrer">current Chinese MFA / Consular Service FAQ</a> lists 50 countries: the policy runs through <strong>December 31, 2026</strong> for 48, through December 31, 2027 for Russia, and has no stated expiry for Brunei. Check your nationality and the policy's validity before departure.</p>
     <h3>2. 240-hour visa-free transit</h3>
-    <p>Travelers from <strong>57 eligible countries, including the United States</strong>, may qualify when passing through Mainland China to a different country or region. Short business activities are allowed. See the <a href={nationalities} target="_blank" rel="noopener noreferrer">NIA's current nationality update</a> and the route examples below.</p>
+    <p>Travelers from <strong>57 eligible countries, including the United States</strong>, may qualify when passing through Mainland China to a different country or region. Short business activities are allowed. See our <a href="/china-240-hour-visa-free-transit/">China 240-Hour Visa-Free Transit Guide</a> for the full eligibility rules, or see the route examples in <a href="#transit">“Can You Attend Automechanika Shanghai Using 240-Hour Visa-Free Transit?”</a> below.</p>
     <h3>3. Chinese visa</h3>
     <p>If neither an applicable general visa exemption nor the transit policy covers your trip, arrange the appropriate Chinese visa before departure.</p>
     <p>The organizer's visa information still broadly says foreign visitors need visas, while also describing exemptions. Use the current government rules above to assess your entry options.</p>
@@ -131,11 +131,11 @@ const faqs = [
     <h2 id="invitation-letters">Can Automechanika Shanghai Provide a Visa Invitation Letter?</h2>
     <p>The organizer offers an invitation-letter service through its official travel partner:</p>
     <p><strong>Shanghai Vision Expo &amp; Meeting Solutions Co., Ltd.</strong><br />Ms. Ealcie Gao<br />Email: <a href="mailto:invitation@shanghai-vision.com">invitation@shanghai-vision.com</a><br />Telephone: +86 21 5481 6051 ext. 807</p>
-    <p>Applicants may be asked for a passport information-page copy, event registration details, their China itinerary, payment information and other documents. The published form uses exhibitor wording; visitors should ask the partner which documents apply to their request.</p>
+    <p>Applicants may be asked for a passport information-page copy, event registration details, their China itinerary, payment information and other documents. The invitation-letter form appears to have been written primarily for exhibitors, so some of its requested information may not apply to trade visitors. If you are attending as a visitor, contact Shanghai Vision Expo &amp; Meeting Solutions Co., Ltd., the organizer's official travel partner, to confirm which documents you need to provide.</p>
     <div class="deadline-note">
       <h3>Important: invitation-letter deadline</h3>
       <p><strong>The published 2026 invitation-letter deadline has already passed.</strong></p>
-      <p>The <a href={invitation} target="_blank" rel="noopener noreferrer">official 2026 invitation-letter form (PDF)</a> says to return applications before <strong>October 30, 2026</strong>, but also lists expedited processing for <strong>October 31–November 6</strong>. That is an inconsistency within the form; both published dates have passed as of November 14.</p>
+      <p>The <a href={invitation} target="_blank" rel="noopener noreferrer">official 2026 invitation-letter form (PDF)</a> says applications should be returned before <strong>October 30, 2026</strong>, but it also lists an express application window from <strong>October 31–November 6</strong>. Both published application windows have now passed.</p>
       <p>If you still need an invitation letter, contact Shanghai Vision immediately and ask whether a late request can still be accepted. <strong>Do not assume late applications will be accepted.</strong></p>
     </div>
     <p>An invitation letter supports a visa application but does not guarantee that a Chinese visa will be issued.</p>
@@ -222,7 +222,15 @@ const faqs = [
 
   <section>
     <h2 id="faq">Frequently Asked Questions</h2>
-    {faqs.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}
+    {faqs.map(([question, answer, nextStep]) => (
+      <details>
+        <summary>{question}</summary>
+        <p>
+          {answer}
+          {nextStep && <> See our <a href="/china-240-hour-visa-free-transit/">China 240-Hour Visa-Free Transit Guide</a>{nextStep === 'checker' ? <> or check your itinerary with the <a href={checker}>Jadebound transit checker</a>.</> : <> for the transit requirements.</>}</>}
+        </p>
+      </details>
+    ))}
   </section>
 
   <section>
