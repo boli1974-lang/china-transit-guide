@@ -1,0 +1,454 @@
+---
+const official = 'https://automechanika-shanghai.hk.messefrankfurt.com';
+const visitors = `${official}/shanghai/en/planning-preparation/visitors.html`;
+const arrival = `${official}/shanghai/en/planning-preparation/arrival-stay.html`;
+const downloads = `${official}/shanghai/en/exhibitor-services/download-centre.html`;
+const assets = `${official}/content/dam/messefrankfurt-redaktion/automechanikashanghai/download/ams2026`;
+const invitation = `${assets}/AMS26_Invitation_Letter_Form_editable.pdf`;
+const exhibitors = `${official}/shanghai/en/exhibitor-search.html`;
+const promotion = `${official}/shanghai/en/facts-figures/QuickAMSLiveRegistration.html`;
+const mfa = 'https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/';
+const nia = 'https://en.nia.gov.cn/n147418/n147468/c187308/content.html';
+const nationalities = 'https://en.nia.gov.cn/n147418/n147468/c217849/content.html';
+const checker = '/china-240-hour-visa-free-transit/#checker';
+const jumpLinks = [
+  ['at-a-glance', 'Event essentials'], ['registration', 'Registration'], ['china-entry', 'China entry options'],
+  ['transit', '240-hour transit'], ['invitation-letters', 'Invitation letters'], ['venue', 'Venue'],
+  ['airports', 'Airports'], ['metro', 'Metro access'], ['hotels', 'Where to stay'],
+  ['buyer-groups', 'Buyer groups'], ['plan-your-visit', 'Visit planning'], ['checklist', 'Travel checklist'],
+  ['faq', 'FAQ'], ['sources', 'Official sources'],
+];
+const facts = [
+  ['Dates', 'December 2–5, 2026'], ['Opening hours', '9:00 AM–6:00 PM, December 2–4 (Shanghai time)'],
+  ['December 5', 'Closes at 3:00 PM'], ['Venue', 'National Exhibition and Convention Center (Shanghai)'],
+  ['Address', '333 Songze Avenue, Qingpu District, Shanghai'], ['Admission', 'Free'],
+  ['Visitor requirement', 'Trade visitors aged 18+'], ['Expected exhibitors', '7,600'],
+  ['Expected exhibition area', '390,000 sqm'], ['2025 attendance', '253,691 visitors'],
+];
+const routes = [
+  ['U.S. → Shanghai → Hong Kong', 'Route can qualify'], ['U.S. → Shanghai → Japan', 'Route can qualify'],
+  ['Hong Kong → Shanghai → South Korea', 'Route can qualify'], ['U.S. → Shanghai → U.S.', 'Does not qualify'],
+  ['Hong Kong → Shanghai → Hong Kong', 'Does not qualify'],
+];
+const faqs = [
+  ['When is Automechanika Shanghai 2026?', 'December 2–5, 2026.'],
+  ['Where is Automechanika Shanghai held?', 'At the National Exhibition and Convention Center (Shanghai), 333 Songze Avenue, Qingpu District.'],
+  ['Is Automechanika Shanghai free to attend?', 'Yes. The current organizer page lists free admission for trade visitors aged 18 or older.'],
+  ['Is visitor preregistration still open?', 'Yes. As of November 14, 2026, the official visitor page still shows preregistration as open. Register as soon as possible.'],
+  ['Does the October 31 date mean registration is closed?', 'No. October 31 was connected to the free official e-fair catalogue promotion. General visitor preregistration remains open as of November 14.'],
+  ['Can I attend Automechanika Shanghai without a Chinese visa?', "Possibly. Your passport may qualify for China's current 30-day visa-free entry policy, or your nationality and itinerary may qualify for 240-hour visa-free transit.", 'guide'],
+  ['Can U.S. citizens attend using 240-hour visa-free transit?', 'Potentially. U.S. ordinary-passport holders are currently an eligible nationality, but their itinerary and other conditions must also meet the transit requirements.', 'checker'],
+  ["Is the United States covered by China's 30-day visa-free policy?", 'No. The United States is not on the current general unilateral 30-day visa-free list.'],
+  ['Can I still request a visa invitation letter?', 'The official 2026 form gives an October 30 submission deadline and also lists expedited processing for October 31–November 6. Both dates have passed. Contact Shanghai Vision immediately to ask about a late request; acceptance is not guaranteed.'],
+  ['Which airport is closest to Automechanika Shanghai?', 'Shanghai Hongqiao International Airport is much closer to NECC than Pudong Airport.'],
+  ['Which Metro line goes to Automechanika Shanghai?', 'Shanghai Metro Line 2 serves National Exhibition and Convention Center Station. Follow current station signs for access.'],
+  ['What time does the show close?', '6:00 PM on December 2–4 and 3:00 PM on December 5, Shanghai time.'],
+];
+---
+
+<main>
+  <header>
+    <h1>Automechanika Shanghai 2026 Visa &amp; Travel Guide for International Visitors</h1>
+    <p>Last verified: <time datetime="2026-11-14">November 14, 2026</time></p>
+  </header>
+
+  <nav aria-label="On this page">
+    <strong>On this page</strong>
+    <ul>{jumpLinks.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul>
+  </nav>
+
+  <section>
+    <h2>Quick Answer</h2>
+    <p><strong>Automechanika Shanghai 2026</strong> runs <strong>December 2–5, 2026</strong> at the <strong>National Exhibition and Convention Center (Shanghai)</strong>.</p>
+    <p>Admission is <strong>free for trade visitors aged 18 or older</strong>. Visitor preregistration is currently open, and the organizer recommends registering ahead for faster entry.</p>
+    <p>If you are traveling from outside China, plan three things before your trip:</p>
+    <ol>
+      <li>Register for Automechanika Shanghai.</li>
+      <li>Confirm how you will enter China — with a visa or an applicable visa-free policy.</li>
+      <li>Plan your airport, hotel and transportation to the NECC exhibition complex.</li>
+    </ol>
+    <p>Some international visitors may qualify for China's <strong>30-day visa-free entry</strong> or <strong>240-hour visa-free transit</strong>, depending on nationality and itinerary.</p>
+    <p class="cta"><a href={checker}>Check your itinerary with the Jadebound 240-hour transit checker →</a></p>
+  </section>
+
+  <section>
+    <h2 id="at-a-glance">Automechanika Shanghai 2026 at a Glance</h2>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="Automechanika Shanghai event essentials">
+      <table><tbody>{facts.map(([label, value]) => <tr><th scope="row">{label}</th><td>{value}</td></tr>)}</tbody></table>
+    </div>
+    <p>The <a href={`${assets}/AMS26_FactSheet_EN.pdf`} target="_blank" rel="noopener noreferrer">2026 fact sheet (PDF)</a> expects approximately <strong>7,600 exhibitors across 390,000 sqm</strong>. Use the official exhibitor search and hall plan before arriving; covering the entire show casually in one day is unrealistic.</p>
+  </section>
+
+  <section>
+    <h2 id="registration">How to Register for Automechanika Shanghai 2026</h2>
+    <p>Visitor preregistration is currently open. The organizer offers preregistered trade visitors a <strong>free pass</strong> and fast-track entry.</p>
+    <ol>
+      <li>Go to the <a href={visitors} target="_blank" rel="noopener noreferrer">official Automechanika Shanghai visitor page</a>.</li>
+      <li>Select <strong>Pre-register now</strong>.</li>
+      <li>Complete registration with your real personal and business information.</li>
+      <li>Save your confirmation and any admission credential the organizer provides.</li>
+      <li>Bring the identification document associated with your registration.</li>
+    </ol>
+    <p>Admission is limited to automotive-industry trade visitors aged <strong>18 or older</strong>.</p>
+    <h3>Is there a preregistration deadline?</h3>
+    <p><strong>As of November 14, official visitor preregistration is still open.</strong> Because the event is approaching, register as soon as possible rather than waiting until arrival.</p>
+    <p>Some organizer pages mention <strong>October 31</strong>. The <a href={promotion} target="_blank" rel="noopener noreferrer">official promotion wording</a> connects that date to a free official e-fair catalogue for visitors who preregistered by then and attend in person. It is <strong>not the general visitor-registration deadline</strong>.</p>
+  </section>
+
+  <section>
+    <h2 id="china-entry">Do You Need a Chinese Visa to Attend Automechanika Shanghai?</h2>
+    <p><strong>Not necessarily.</strong> There are three common cases:</p>
+    <h3>1. 30-day visa-free entry</h3>
+    <p>China allows covered ordinary-passport holders to visit visa-free for up to <strong>30 days</strong> for business, tourism, visits, exchange and transit, including attending exhibitions. Ordinary-passport holders from countries including the <strong>United Kingdom, Canada, Australia, New Zealand, Japan, South Korea, Germany and France</strong> are currently eligible, along with travelers from many other European countries.</p>
+    <p>The <a href={mfa} target="_blank" rel="noopener noreferrer">current Chinese MFA / Consular Service FAQ</a> lists 50 countries: the policy runs through <strong>December 31, 2026</strong> for 48, through December 31, 2027 for Russia, and has no stated expiry for Brunei. Check your nationality and the policy's validity before departure.</p>
+    <h3>2. 240-hour visa-free transit</h3>
+    <p>Travelers from <strong>57 eligible countries, including the United States</strong>, may qualify when passing through Mainland China to a different country or region. Short business activities are allowed. See our <a href="/china-240-hour-visa-free-transit/">China 240-Hour Visa-Free Transit Guide</a> for the full eligibility rules, or see the route examples in <a href="#transit">“Can You Attend Automechanika Shanghai Using 240-Hour Visa-Free Transit?”</a> below.</p>
+    <h3>3. Chinese visa</h3>
+    <p>If neither an applicable general visa exemption nor the transit policy covers your trip, arrange the appropriate Chinese visa before departure.</p>
+    <p>The organizer's visa information still broadly says foreign visitors need visas, while also describing exemptions. Use the current government rules above to assess your entry options.</p>
+  </section>
+
+  <section>
+    <h2 id="transit">Can You Attend Automechanika Shanghai Using 240-Hour Visa-Free Transit?</h2>
+    <p>Potentially. The basic route requirement is:</p>
+    <p><strong>Country or region A → Mainland China → different country or region B</strong></p>
+    <p class="table-hint">On smaller screens, swipe the route table sideways.</p>
+    <div class="table-wrap route-table" tabindex="0" role="region" aria-label="Transit route examples">
+      <table>
+        <thead><tr><th scope="col">Example route</th><th scope="col">Transit route requirement</th></tr></thead>
+        <tbody>{routes.map(([route, result]) => <tr><td>{route}</td><td>{result}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p>These examples only illustrate the route requirement. Your nationality, passport, entry port, onward booking and other conditions must also qualify. Check the countries or regions immediately before and after Mainland China, including any flight connections.</p>
+    <p>For complete eligibility requirements, current entry ports and stay rules, see our <a href="/china-240-hour-visa-free-transit/">China 240-Hour Visa-Free Transit Guide</a>.</p>
+    <p class="cta"><a href={checker}>Check your itinerary with the Jadebound 240-hour transit checker →</a></p>
+    <h3>For U.S. visitors</h3>
+    <p>U.S. ordinary-passport holders are currently an eligible nationality for 240-hour transit. The United States is <strong>not on China's general unilateral 30-day visa-free list</strong>. An ordinary <strong>U.S. → Shanghai → U.S.</strong> trip does not meet the transit-route requirement.</p>
+    <p>Read <a href="/do-us-citizens-need-a-visa-for-china/">Do U.S. Citizens Need a Visa for China?</a> for more help planning your trip.</p>
+  </section>
+
+  <section>
+    <h2 id="invitation-letters">Can Automechanika Shanghai Provide a Visa Invitation Letter?</h2>
+    <p>The organizer offers an invitation-letter service through its official travel partner:</p>
+    <p><strong>Shanghai Vision Expo &amp; Meeting Solutions Co., Ltd.</strong><br />Ms. Ealcie Gao<br />Email: <a href="mailto:invitation@shanghai-vision.com">invitation@shanghai-vision.com</a><br />Telephone: +86 21 5481 6051 ext. 807</p>
+    <p>Applicants may be asked for a passport information-page copy, event registration details, their China itinerary, payment information and other documents. The invitation-letter form appears to have been written primarily for exhibitors, so some of its requested information may not apply to trade visitors. If you are attending as a visitor, contact Shanghai Vision Expo &amp; Meeting Solutions Co., Ltd., the organizer's official travel partner, to confirm which documents you need to provide.</p>
+    <div class="deadline-note">
+      <h3>Important: invitation-letter deadline</h3>
+      <p><strong>The published 2026 invitation-letter deadline has already passed.</strong></p>
+      <p>The <a href={invitation} target="_blank" rel="noopener noreferrer">official 2026 invitation-letter form (PDF)</a> says applications should be returned before <strong>October 30, 2026</strong>, but it also lists an express application window from <strong>October 31–November 6</strong>. Both published application windows have now passed.</p>
+      <p>If you still need an invitation letter, contact Shanghai Vision immediately and ask whether a late request can still be accepted. <strong>Do not assume late applications will be accepted.</strong></p>
+    </div>
+    <p>An invitation letter supports a visa application but does not guarantee that a Chinese visa will be issued.</p>
+  </section>
+
+  <section>
+    <h2 id="venue">Where Is Automechanika Shanghai Held?</h2>
+    <p><strong>National Exhibition and Convention Center (Shanghai)</strong><br />333 Songze Avenue<br />Qingpu District<br />Shanghai, China</p>
+    <p>The venue is commonly abbreviated <strong>NECC (Shanghai)</strong>. The organizer expects the 2026 show to occupy the entire venue: approximately <strong>390,000 sqm across 16 halls plus mezzanine space</strong>.</p>
+    <p>Before arriving, save your priority suppliers from the <a href={exhibitors} target="_blank" rel="noopener noreferrer">official exhibitor search</a> and check the <a href={`${assets}/AMS26_Hallplan_vertical.png`} target="_blank" rel="noopener noreferrer">2026 hall plan</a> in the <a href={downloads} target="_blank" rel="noopener noreferrer">Download Centre</a>.</p>
+  </section>
+
+  <section>
+    <h2 id="airports">Which Shanghai Airport Is Better for Automechanika?</h2>
+    <h3>Shanghai Hongqiao International Airport</h3>
+    <p>Hongqiao is by far the more convenient airport for NECC when suitable flights are available. The organizer places NECC about <strong>1.5 km in straight-line distance from Hongqiao Transportation Hub</strong>; this is not the actual walking or driving distance.</p>
+    <h3>Shanghai Pudong International Airport</h3>
+    <p>Pudong serves many long-haul international flights but is much farther from NECC. Allow more time for the transfer. The <a href={arrival} target="_blank" rel="noopener noreferrer">organizer's Arrival &amp; Stay page</a> provides transport options from both airports.</p>
+    <p><strong>Choose Hongqiao when the flight works well; choose Pudong when it provides the better international itinerary.</strong></p>
+  </section>
+
+  <section>
+    <h2 id="metro">Getting to Automechanika Shanghai by Metro</h2>
+    <p>The main public-transport option is <strong>Shanghai Metro Line 2</strong> to <strong>National Exhibition and Convention Center Station</strong>. The organizer recommends <strong>Exits 4, 5 and 6</strong>, but warns that Exits 4 and 5 may close intermittently under certain conditions.</p>
+    <h3>From Hongqiao Airport</h3>
+    <p>From the airport's Line 2 station at Terminal 2, take Line 2 directly to National Exhibition and Convention Center Station. If arriving at Terminal 1, allow for a terminal transfer before joining Line 2.</p>
+    <h3>From Pudong Airport</h3>
+    <p>Metro Line 2 connects Pudong with the exhibition area, but the ride is much longer. Compare Metro and taxi based on arrival time, luggage, budget and traffic.</p>
+    <h3>From Shanghai Hongqiao Railway Station</h3>
+    <p>Take <strong>Metro Line 2</strong> to National Exhibition and Convention Center Station.</p>
+    <p>Follow current station signs during the exhibition because access arrangements can change during very large events.</p>
+  </section>
+
+  <section>
+    <h2 id="hotels">Where Should You Stay?</h2>
+    <h3>Near NECC / Hongqiao</h3>
+    <p>Best when the exhibition is your main purpose: a shorter daily commute makes the fair easier to manage. The organizer warns that nearby hotels face high demand, so book early.</p>
+    <h3>Central Shanghai</h3>
+    <p>Better if you also want central meetings, restaurants or sightseeing. The trade-off is a longer commute to NECC.</p>
+    <h3>Near Hongqiao Transportation Hub</h3>
+    <p>Useful if you combine the show with domestic flights, high-speed rail or other China business travel.</p>
+    <p>When booking, check the actual route to National Exhibition and Convention Center rather than relying on a hotel description that simply says “near the convention center.”</p>
+  </section>
+
+  <section>
+    <h2 id="buyer-groups">Coming With an Overseas Buyer Group?</h2>
+    <p>The <a href={visitors} target="_blank" rel="noopener noreferrer">official visitor page</a> offers an <strong>Overseas Buyers Group Programme</strong> for groups of <strong>15 members or more</strong>. Benefits may include:</p>
+    <ul>
+      <li>Hotel accommodation, subject to availability and offered first come, first served.</li>
+      <li>Shuttle service between the hotel and NECC.</li>
+      <li>Pre-arranged admission badges and fast-track entry.</li>
+      <li>An electronic fair catalogue and welcome kit.</li>
+    </ul>
+    <p>Eligibility depends on the organizing group and members' automotive-business profiles. Hotel accommodation is <strong>not guaranteed</strong>. Contact <a href="mailto:auto@hongkong.messefrankfurt.com">Automechanika Shanghai</a> before making group travel arrangements.</p>
+  </section>
+
+  <section>
+    <h2 id="plan-your-visit">Plan Your Visit Before You Arrive</h2>
+    <p>With 7,600 exhibitors expected across approximately 390,000 sqm, advance planning matters:</p>
+    <ul>
+      <li>Search for priority exhibitors and save hall and booth numbers.</li>
+      <li>Review the current hall plan.</li>
+      <li>Identify conferences or matchmaking events you want to attend.</li>
+      <li>Group meetings by hall.</li>
+      <li>Avoid trying to walk the entire exhibition without a plan.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="checklist">Automechanika Shanghai 2026 Travel Checklist</h2>
+    <ul>
+      <li>Pre-register for your free visitor pass.</li>
+      <li>Confirm that you meet the trade-visitor and age requirements.</li>
+      <li>Check whether your passport qualifies for 30-day visa-free entry, 240-hour transit, or requires a Chinese visa.</li>
+      <li>If using 240-hour transit, <a href={checker}>check your complete itinerary with the Jadebound checker</a>.</li>
+      <li>If you still need an invitation letter, contact the official travel partner immediately.</li>
+      <li>Book your hotel early.</li>
+      <li>Decide whether Hongqiao or Pudong is better for your flight itinerary.</li>
+      <li>Save the venue address and Metro station.</li>
+      <li>Review the exhibitor search and hall plan before arriving.</li>
+      <li>Remember that the final day closes at <strong>3:00 PM</strong>.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="faq">Frequently Asked Questions</h2>
+    {faqs.map(([question, answer, nextStep]) => (
+      <details>
+        <summary>{question}</summary>
+        <p>
+          {answer}
+          {nextStep && <> See our <a href="/china-240-hour-visa-free-transit/">China 240-Hour Visa-Free Transit Guide</a>{nextStep === 'checker' ? <> or check your itinerary with the <a href={checker}>Jadebound transit checker</a>.</> : <> for the transit requirements.</>}</>}
+        </p>
+      </details>
+    ))}
+  </section>
+
+  <section>
+    <h2>Plan Your Automechanika Shanghai Trip</h2>
+    <p>Planning to use China's 240-hour visa-free transit policy for your Shanghai trip?</p>
+    <p class="cta"><a href={checker}>Check your itinerary with the Jadebound 240-hour transit checker →</a></p>
+    <p>Or read our <a href="/china-240-hour-visa-free-transit/">China 240-Hour Visa-Free Transit Guide</a> and <a href="/do-us-citizens-need-a-visa-for-china/">Do U.S. Citizens Need a Visa for China?</a></p>
+  </section>
+
+  <section>
+    <h2 id="sources">Official Sources</h2>
+    <ul>
+      <li><a href={visitors} target="_blank" rel="noopener noreferrer">Automechanika Shanghai Information for Visitors</a> — registration, admission, hours and overseas buyer groups.</li>
+      <li><a href={promotion} target="_blank" rel="noopener noreferrer">Official e-fair catalogue promotion</a> — context for October 31.</li>
+      <li><a href={arrival} target="_blank" rel="noopener noreferrer">Arrival &amp; Stay, including current visa / invitation-letter information</a>.</li>
+      <li><a href="https://www.shanghaiairport.com/ensh/gdjt/index.html" target="_blank" rel="noopener noreferrer">Shanghai Airport: Metro access by terminal</a> — Hongqiao Terminal 1 transfer and Terminal 2 Line 2 access.</li>
+      <li><a href={`${assets}/AMS26_FactSheet_EN.pdf`} target="_blank" rel="noopener noreferrer">2026 Fact Sheet (PDF)</a>.</li>
+      <li><a href={downloads} target="_blank" rel="noopener noreferrer">Download Centre</a> and <a href={`${assets}/AMS26_Hallplan_vertical.png`} target="_blank" rel="noopener noreferrer">2026 Hall Plan</a>.</li>
+      <li><a href={`${official}/shanghai/en/press/press-releases/2026/AMS26_PR1.html`} target="_blank" rel="noopener noreferrer">2026 organizer announcement</a> — venue scale and halls.</li>
+      <li><a href={exhibitors} target="_blank" rel="noopener noreferrer">2026 Exhibitor Search</a>.</li>
+      <li><a href={invitation} target="_blank" rel="noopener noreferrer">Official 2026 Visa Invitation Letter Application Form (PDF)</a> — submission and expedited-processing dates.</li>
+      <li><a href={mfa} target="_blank" rel="noopener noreferrer">Chinese MFA / Consular Service: current visa-free-entry FAQ</a>.</li>
+      <li><a href={nia} target="_blank" rel="noopener noreferrer">NIA: 240-hour transit conditions and entry ports</a> — read with the newer nationality update below.</li>
+      <li><a href={nationalities} target="_blank" rel="noopener noreferrer">NIA: August 2026 update to 57 eligible nationalities</a>.</li>
+    </ul>
+  </section>
+</main>
+<style>
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+  }
+
+  header {
+    margin-bottom: 48px;
+  }
+
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+  }
+
+  nav li + li {
+    margin-top: 0;
+  }
+
+  details {
+    border-bottom: 1px solid #d1d5db;
+    padding: 16px 0;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: 16px 0 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 4px;
+  }
+
+  .route-table table {
+    min-width: 600px;
+  }
+
+  .deadline-note {
+    padding: 24px;
+    border: 2px solid #b45309;
+    border-radius: 8px;
+    background: #fffbeb;
+  }
+
+  .deadline-note h3 {
+    margin-top: 0;
+  }
+
+  main {
+    overflow-wrap: anywhere;
+  }
+
+  h2[id] {
+    scroll-margin-top: 24px;
+  }
+
+  .table-wrap th[scope="row"] {
+    width: 35%;
+  }
+
+
+  .table-hint {
+    font-size: 0.875rem;
+    color: #4b5563;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin: 56px 0 20px;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin: 32px 0 12px;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  p {
+    margin: 0 0 18px;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 20px;
+    padding-left: 28px;
+  }
+
+  li + li {
+    margin-top: 8px;
+  }
+
+  section {
+    margin-top: 48px;
+  }
+
+  section:first-of-type {
+    margin-top: 0;
+    padding: 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+  }
+
+  section:first-of-type h2 {
+    margin-top: 0;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  th {
+    background: #f3f4f6;
+  }
+
+  a {
+    color: #1d4ed8;
+  }
+
+  .cta {
+    margin: 24px 0;
+    padding: 16px 18px;
+    border-left: 4px solid #1d4ed8;
+    background: #eff6ff;
+  }
+
+  .cta a {
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    th,
+    td {
+      padding: 8px;
+    }
+
+    main {
+      padding: 32px 18px 60px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    section:first-of-type {
+      padding: 20px;
+    }
+  }
+</style>
