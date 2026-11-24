@@ -1,0 +1,451 @@
+---
+const official = 'https://www.cmef.com.cn/en';
+const visitors = `${official}/Information?cid=146`;
+const registration = 'https://reg.reed-sinopharm.com/pc/';
+const exhibitors = 'https://i.cmef.com.cn/ex-listEn2';
+const matchmaking = 'https://i.cmef.com.cn/chanceEn';
+const program = `${official}/Information?cid=163`;
+const travel = `${official}/Information?cid=167`;
+const venueAddress = 'https://www.neccsh.com/cecsh/companynews/1045.jhtml';
+const venueTransport = 'https://www.neccsh.com/cecsh/jt/index.jhtml';
+const shanghaiTransport = 'https://english.shanghai.gov.cn/en-CIIE2026Service-Transport/20261104/65a69a0c457948ab8dd3fe4dd7d73089.html';
+const mfa = 'https://cs.mfa.gov.cn/lh/lhqz_149493/cjwd/';
+const nia = 'https://en.nia.gov.cn/n147418/n147463/c183412/content.html';
+const nationalities = 'https://en.nia.gov.cn/n147418/n147468/c217849/content.html';
+const guide = '/china-240-hour-visa-free-transit/';
+const checker = `${guide}#checker`;
+const usGuide = '/do-us-citizens-need-a-visa-for-china/';
+const jumpLinks = [
+  ['at-a-glance', 'Event essentials'], ['registration', 'Registration'], ['china-entry', 'China entry options'],
+  ['transit', '240-hour transit'], ['us-visitors', 'U.S. visitors'], ['invitation-letters', 'Invitation letters'],
+  ['venue', 'Venue'], ['airports', 'Airports'], ['metro', 'Metro access'], ['hotels', 'Where to stay'],
+  ['matchmaking', 'Business matchmaking'], ['floorplan', 'Floorplan'], ['program', 'Conferences'],
+  ['checklist', 'Travel checklist'], ['faq', 'FAQ'], ['sources', 'Official sources'],
+];
+const facts = [
+  ['Dates', 'April 7–10, 2027'], ['April 7', '9:00 AM–5:00 PM'], ['April 8', '9:00 AM–5:00 PM'],
+  ['April 9', '9:00 AM–5:00 PM'], ['April 10', '9:00 AM–4:00 PM'],
+  ['Venue', 'National Exhibition and Convention Center (Shanghai)'],
+  ['Address', '333 Songze Avenue, Qingpu District, Shanghai'], ['Expected exhibitors', '5,000+'],
+  ['Expected professional visitors', '300,000+'], ['Show area', '320,000 sqm'],
+  ['Countries & regions represented', '150+'], ['Conferences', '100+'],
+];
+const routes = [
+  ['U.S. → Shanghai → Hong Kong', 'Can meet the transit-route requirement'],
+  ['U.S. → Shanghai → Japan', 'Can meet the transit-route requirement'],
+  ['Hong Kong → Shanghai → U.S.', 'Can meet the transit-route requirement'],
+  ['U.S. → Shanghai → U.S.', 'Does not meet the requirement'],
+  ['Hong Kong → Shanghai → Hong Kong', 'Does not meet the requirement'],
+];
+const faqs = [
+  ['When is CMEF Shanghai 2027?', 'CMEF Shanghai 2027 runs April 7–10, 2027.'],
+  ['What are the opening hours?', '9:00 AM–5:00 PM on April 7–9 and 9:00 AM–4:00 PM on April 10, Shanghai time.'],
+  ['Where is CMEF Shanghai held?', 'At the National Exhibition and Convention Center (Shanghai), 333 Songze Avenue, Qingpu District.'],
+  ['Is CMEF visitor registration open?', 'The official visitor page currently offers a Visitor Center / Register link. A specific public 2027 registration deadline is not yet published. We could not verify completion of the registration flow; check that the system offers the April 2027 Shanghai edition.', 'registration'],
+  ['Is CMEF free to attend?', 'The current public 2027 visitor page does not clearly publish an admission fee. Check the official Visitor Center during registration rather than assuming admission is free.'],
+  ['Can I attend CMEF Shanghai without a Chinese visa?', 'Possibly. Your passport and itinerary determine your options. Most current unilateral 30-day exemptions are confirmed only through December 31, 2026, so recheck the policy for April 2027. Eligible travelers may also qualify for 240-hour visa-free transit.', 'guide'],
+  ['Will UK, Canadian or Australian passport holders be visa-free for CMEF 2027?', 'That is not yet confirmed under the current unilateral policy. These countries are covered by the present 30-day exemption, but its published validity ends December 31, 2026. Check again after China publishes or extends its 2027 policy.'],
+  ['Can U.S. citizens use 240-hour visa-free transit for CMEF?', 'Potentially. U.S. ordinary-passport holders are currently an eligible nationality, but must transit Mainland China to a different country or region and satisfy the other requirements.', 'checker'],
+  ['Can CMEF issue a visa invitation letter?', 'A specific April 2027 international visitor procedure or deadline has not yet been confirmed on the current site. Contact the international visitor team to ask whether a letter is available and how to apply.'],
+  ['Which airport is closest to CMEF?', 'Shanghai Hongqiao International Airport is much closer to NECC than Pudong.'],
+  ['Which Metro lines serve NECC?', 'Lines 2 and 17 currently serve National Exhibition and Convention Center Station. Follow current event instructions and station signs.'],
+  ['Is the CMEF 2027 floorplan available?', 'Not yet. The current official visitor page says “Layout & Floorplan — Coming Soon.”'],
+  ["Should I use CMEF’s business matchmaking service?", 'It can help buyers, distributors, sourcing teams and visitors targeting specific companies plan conversations before the show. Participation does not guarantee meetings.', 'matchmaking'],
+];
+const sources = [
+  [official, 'CMEF — April 2027 dates, opening hours and current visitor contacts'],
+  [visitors, 'CMEF visitor guide — event figures, Visitor Center and Layout & Floorplan status'],
+  [registration, 'CMEF Visitor Center — registration portal linked by the organizer'],
+  [exhibitors, 'CMEF — official exhibitor search'],
+  [matchmaking, 'iCMEF — Matchmaking Center'],
+  [program, 'CMEF — conferences, programs and Business Matchmaking information'],
+  [travel, 'CMEF — travel page (still contains Beijing information; excluded from Shanghai logistics)'],
+  [venueAddress, 'NECC — venue name and address (Chinese)'],
+  [venueTransport, 'NECC — transport and Hongqiao proximity (Chinese)'],
+  [shanghaiTransport, 'Shanghai government — NECC Metro access (CIIE guide; event-specific exits not applied to CMEF)'],
+  [mfa, 'Chinese MFA / Consular Service — visa-free entry FAQ and validity dates'],
+  [nia, 'National Immigration Administration — current visa-free transit rules and eligible nationalities'],
+  [nationalities, 'National Immigration Administration — August 2026 update to 57 eligible transit nationalities'],
+];
+---
+
+<main>
+  <header>
+    <h1>CMEF Shanghai 2027 Visa &amp; Travel Guide for International Visitors</h1>
+    <p>Last verified: <time datetime="2026-11-24">November 24, 2026</time></p>
+  </header>
+  <nav aria-label="On this page">
+    <strong>On this page</strong>
+    <ul>{jumpLinks.map(([id, label]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul>
+  </nav>
+
+  <section>
+    <h2>Quick Answer</h2>
+    <p><strong>CMEF Shanghai 2027</strong> will be held <strong>April 7–10, 2027</strong> at the <strong>National Exhibition and Convention Center (Shanghai)</strong>.</p>
+    <p>The organizer already links to its online <a href={visitors} target="_blank" rel="noopener noreferrer">Visitor Center</a>. Confirm the Shanghai 2027 edition in the registration system before submitting your details.</p>
+    <p>The visitor page advertises <strong>5,000+ exhibitors, 300,000+ professionals, 320,000 sqm of exhibition space, 150+ countries and regions, and 100+ conferences</strong>.</p>
+    <p>For an international medical-industry visit, plan four things early:</p>
+    <ol><li>Register for the exhibition.</li><li>Determine how you will enter China.</li><li>Choose your Shanghai airport and hotel.</li><li>Identify priority exhibitors or meetings before arriving.</li></ol>
+    <p class="cta"><a href={checker}>Check your itinerary with the Jadebound 240-hour transit checker →</a></p>
+  </section>
+
+  <section>
+    <h2 id="at-a-glance">CMEF Shanghai 2027 at a Glance</h2>
+    <p>Opening hours below are in Shanghai time.</p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="CMEF Shanghai event essentials">
+      <table><tbody>{facts.map(([label, value]) => <tr><th scope="row">{label}</th><td>{value}</td></tr>)}</tbody></table>
+    </div>
+    <p>The scale matters: thousands of exhibitors across 320,000 square meters are difficult to navigate efficiently without advance planning. The official <a href={exhibitors} target="_blank" rel="noopener noreferrer">exhibitor search</a> and Visitor Center links are already available, while the <a href={visitors} target="_blank" rel="noopener noreferrer">2027 Layout &amp; Floorplan</a> is currently marked <strong>Coming Soon</strong>.</p>
+    <p class="source-note">The figures above follow the current visitor page. The homepage also contains a separate block showing 270,000 sqm and 170+ conferences; the organizer's pages are not fully consistent. Treat the scale figures as organizer estimates and recheck closer to April.</p>
+  </section>
+
+  <!-- Refresh early 2027: deadline, fee, registration availability and entry documents. -->
+  <section>
+    <h2 id="registration">How to Register for CMEF Shanghai 2027</h2>
+    <ol>
+      <li>Go to the <a href={visitors} target="_blank" rel="noopener noreferrer">official CMEF visitor page</a>.</li>
+      <li>Select <a href={registration} target="_blank" rel="noopener noreferrer">Visitor Center / Register</a> and check that the exhibition is Shanghai, April 7–10, 2027.</li>
+      <li>Complete registration using your real personal and business information.</li>
+      <li>Save the registration confirmation or credential issued by the system.</li>
+    </ol>
+    <p>The official site currently offers registration links. We could not verify completion of the portal's registration flow, so check the edition and availability in the system.</p>
+    <p><strong>As of November 24, 2026, the public 2027 visitor page does not yet publish a specific registration deadline, admission fee, or detailed international visitor entry-document requirements.</strong> Do not assume admission is free.</p>
+    <p>Because CMEF is still several months away, these details may be updated closer to April.</p>
+  </section>
+
+  <!-- Refresh early 2027: re-read the live MFA FAQ, including validity exceptions. -->
+  <section>
+    <h2 id="china-entry">Do You Need a Chinese Visa to Attend CMEF Shanghai?</h2>
+    <p><strong>It depends on your passport and itinerary.</strong> You may need a Chinese visa, qualify for an applicable visa exemption, or qualify for 240-hour visa-free transit.</p>
+    <div class="deadline-note">
+      <h3>A special issue for CMEF 2027: do not rely on the current 2026 30-day visa-free list yet</h3>
+      <p>China currently permits many ordinary-passport holders to stay visa-free for up to 30 days for business, tourism, family or friends visits, exchange and transit. But <strong>CMEF is in April 2027</strong>.</p>
+      <p>The <a href={mfa} target="_blank" rel="noopener noreferrer">current MFA / Consular Service FAQ</a> lists 50 countries: <strong>48 are confirmed only through December 31, 2026</strong>. Russia's exemption runs through December 31, 2027; Brunei's has no stated expiry.</p>
+      <p>Travelers from the <strong>United Kingdom, Canada, Australia, New Zealand, Japan, South Korea, Germany and France</strong> should not yet assume the current unilateral 30-day exemption will still apply for CMEF in April 2027.</p>
+      <p>China may extend or change these policies. <strong>Recheck the official policy before booking travel that depends on visa-free entry.</strong></p>
+    </div>
+    <p>If your passport is covered by a separate mutual visa-exemption agreement, follow that agreement's terms. If no exemption or transit option covers your trip, arrange the appropriate Chinese visa before departure.</p>
+  </section>
+
+  <section>
+    <h2 id="transit">Can You Attend CMEF Using 240-Hour Visa-Free Transit?</h2>
+    <p><strong>Potentially.</strong> Under the <a href={nia} target="_blank" rel="noopener noreferrer">current NIA policy</a>, ordinary-passport holders from <strong>57 eligible countries, including the United States</strong>, may enter through designated ports and stay within permitted areas for up to 240 hours while transiting Mainland China to a different country or region. Short-term business activities are permitted.</p>
+    <p><strong>Country or region A → Mainland China → different country or region B</strong></p>
+    <p class="table-hint">On smaller screens, swipe the route table sideways.</p>
+    <div class="table-wrap route-table" tabindex="0" role="region" aria-label="Transit route examples">
+      <table><thead><tr><th scope="col">Example itinerary</th><th scope="col">Route requirement</th></tr></thead>
+        <tbody>{routes.map(([route, result]) => <tr><td>{route}</td><td>{result}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p>These examples illustrate only the route requirement. Your nationality, passport, entry port, onward reservation and other conditions must also qualify. Check the countries or regions immediately before and after Mainland China, including flight connections.</p>
+    <p>Read the <a href={guide}>China 240-Hour Visa-Free Transit Guide</a> for full requirements. <strong>Check the policy again before departure even if your itinerary qualifies under today's rules.</strong></p>
+    <p class="cta"><a href={checker}>Check your itinerary with the Jadebound 240-hour transit checker →</a></p>
+  </section>
+
+  <section>
+    <h2 id="us-visitors">What About U.S. Visitors?</h2>
+    <p>U.S. ordinary-passport holders are currently eligible by nationality for 240-hour transit. <strong>U.S. → Shanghai → Hong Kong</strong> can meet the route requirement; <strong>U.S. → Shanghai → U.S.</strong> does not. The United States is not on China's current unilateral 30-day visa-free list.</p>
+    <p>Read <a href={usGuide}>Do U.S. Citizens Need a Visa for China?</a> and the <a href={guide}>240-hour guide</a>, then <a href={checker}>check your complete itinerary</a>.</p>
+  </section>
+
+  <!-- Refresh early 2027: invitation procedure, visitor eligibility, contact and deadline. -->
+  <section>
+    <h2 id="invitation-letters">Can CMEF Provide a Visa Invitation Letter?</h2>
+    <p><strong>A 2027-specific international visitor invitation-letter procedure or deadline has not yet been confirmed on the current CMEF site.</strong> An older edition's invitation form should not be treated as valid for April 2027.</p>
+    <p>The current official site lists this <strong>Visitor &amp; Marketing</strong> contact:</p>
+    <p><strong>Hazel Zhen</strong><br />Email: <a href="mailto:hongyue.zhen@reedsinopharm.com">hongyue.zhen@reedsinopharm.com</a><br />Tel: <a href="tel:+861084556578">+86-10-84556578</a></p>
+    <p>If you need an invitation letter now, explain that you plan to attend the <strong>April 7–10, 2027 Shanghai exhibition</strong>. Ask whether a visa invitation letter is available for international trade visitors, which documents are required, and when applications open or close.</p>
+    <p>We will update this section when CMEF publishes a specific 2027 invitation-letter procedure.</p>
+  </section>
+
+  <section>
+    <h2 id="venue">Where Is CMEF Shanghai 2027 Held?</h2>
+    <p><strong>National Exhibition and Convention Center (Shanghai)</strong><br />333 Songze Avenue<br />Qingpu District<br />Shanghai, China</p>
+    <p>The venue is commonly abbreviated <strong>NECC (Shanghai)</strong>. Its <a href={venueTransport} target="_blank" rel="noopener noreferrer">official transport page (Chinese)</a> places it approximately <strong>1.5 km in a straight line from Hongqiao Transportation Hub</strong>; that is not a walking or driving distance.</p>
+    <p>With approximately 320,000 sqm advertised for CMEF, save priority exhibitors and their hall locations before arriving. The venue address alone will not tell you which entrance is best for your meetings.</p>
+  </section>
+
+  <section>
+    <h2 id="airports">Which Shanghai Airport Is Better for CMEF?</h2>
+    <h3>Shanghai Hongqiao International Airport</h3>
+    <p>Hongqiao is generally the more convenient airport for NECC when suitable flights are available. It is especially useful for domestic China flights, connections with Hongqiao Railway Station and travelers staying near NECC.</p>
+    <h3>Shanghai Pudong International Airport</h3>
+    <p>Pudong serves many more long-haul international flights but is much farther from NECC. Allow significantly more ground-transfer time when arriving there.</p>
+    <p><strong>Choose Hongqiao when the flight itinerary works well; choose Pudong when it offers the better international flight.</strong></p>
+  </section>
+
+  <!-- Refresh early 2027: use Shanghai-specific CMEF guidance, not old Beijing or CIIE exits. -->
+  <section>
+    <h2 id="metro">Getting to CMEF by Metro</h2>
+    <p><strong>Metro Lines 2 and 17</strong> currently serve <strong>National Exhibition and Convention Center Station</strong>. Line 2 is especially useful from the Hongqiao transportation area. Both the venue and <a href={shanghaiTransport} target="_blank" rel="noopener noreferrer">Shanghai's official NECC transport information</a> confirm these lines.</p>
+    <p>For large exhibitions at NECC, station exits and pedestrian flows may be managed differently depending on crowd levels. <strong>Follow current CMEF instructions and station signs when you arrive.</strong> Exit directions published for CIIE should not be assumed to apply to CMEF.</p>
+    <p>We will update this section when CMEF publishes its Shanghai-specific 2027 arrival guidance.</p>
+  </section>
+
+  <!-- Refresh early 2027: check edition-specific hotel and travel recommendations. -->
+  <section>
+    <h2 id="hotels">Where Should You Stay?</h2>
+    <h3>Near NECC / Hongqiao</h3>
+    <p>Best if CMEF is the main purpose of the trip. A shorter commute makes multi-day attendance easier.</p>
+    <h3>Central Shanghai</h3>
+    <p>Better if your trip also includes business meetings, restaurants, sightseeing or other Shanghai activities. The trade-off is a longer daily commute.</p>
+    <h3>Near Hongqiao Railway Station</h3>
+    <p>Useful if CMEF is part of a larger China business trip involving high-speed rail. Check the actual route from your hotel to NECC before booking.</p>
+    <p><strong>Check that any hotel or transportation recommendation specifically refers to Shanghai 2027 before booking.</strong> CMEF's current Travel / Hotel and Venue pages still describe the Beijing venue, Line 15 and Beijing airports. Those instructions are not for this Shanghai exhibition.</p>
+  </section>
+
+  <section>
+    <h2 id="matchmaking">Use CMEF's Business Matchmaking Program</h2>
+    <p>CMEF offers a <strong>Business Matchmaking Program</strong> and its <a href={matchmaking} target="_blank" rel="noopener noreferrer">iCMEF Matchmaking Center</a>. The <a href={program} target="_blank" rel="noopener noreferrer">official program page</a> describes posting demand or supply, connecting with companies suited to your interests, virtual conversations and pre-arranged meetings.</p>
+    <ul><li>Use the <a href={exhibitors} target="_blank" rel="noopener noreferrer">exhibitor search</a> to identify relevant companies and products.</li><li>Use iCMEF to communicate your sourcing interests and contact potential partners before the show.</li><li>Arrange meetings where possible, then group them by hall once the floorplan appears.</li></ul>
+    <p>For an international buyer, distributor or sourcing team, this can be more efficient than arriving at NECC and discovering suppliers entirely on the show floor. Matches and meetings are not guaranteed.</p>
+  </section>
+
+  <!-- Refresh early 2027: visitor guide currently marks floorplan Coming Soon. -->
+  <section>
+    <h2 id="floorplan">The 2027 Floorplan Is Not Available Yet</h2>
+    <p>As of November 24, 2026, the <a href={visitors} target="_blank" rel="noopener noreferrer">official CMEF visitor page</a> says <strong>Layout &amp; Floorplan — Coming Soon</strong>. No publication date is given.</p>
+    <p>Once published, use it with the exhibitor search to group meetings by hall. Repeated walks between distant halls can consume significant time at a 320,000 sqm exhibition. Do not substitute the older Beijing floorplan found in the downloads.</p>
+    <p>We recommend checking the CMEF floorplan again in early 2027.</p>
+  </section>
+
+  <!-- Refresh early 2027: detailed April schedule and Coming Soon program links. -->
+  <section>
+    <h2 id="program">Conferences and Programs</h2>
+    <p>The visitor page advertises <strong>100+ conferences</strong>, but the detailed April 2027 program is not yet fully published. Some links on the <a href={program} target="_blank" rel="noopener noreferrer">official program page</a> still say <strong>Coming Soon</strong>.</p>
+    <p>If conferences, market-entry sessions or technical programs are important to your trip, check the official program again closer to the event rather than planning around a preliminary schedule.</p>
+  </section>
+
+  <section>
+    <h2 id="checklist">CMEF Shanghai 2027 Travel Checklist</h2>
+    <ul>
+      <li>Register through the official CMEF Visitor Center, checking the edition.</li>
+      <li>Recheck China's visa and visa-free policies for April 2027.</li>
+      <li>If using 240-hour transit, <a href={checker}>check your complete itinerary with the Jadebound checker</a>.</li>
+      <li>Ask CMEF about a 2027 invitation letter if you need one.</li>
+      <li>Choose Hongqiao or Pudong based on your flight itinerary.</li>
+      <li>Book a hotel with a practical route to NECC.</li>
+      <li>Search for priority exhibitors.</li>
+      <li>Use CMEF's matchmaking service if useful.</li>
+      <li>Download the 2027 floorplan once it is published.</li>
+      <li>Recheck the conference program.</li>
+      <li>Recheck Shanghai-specific arrival instructions shortly before departure.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="faq">Frequently Asked Questions</h2>
+    {faqs.map(([question, answer, link]) => <details><summary>{question}</summary><p>{answer}</p>
+      {link === 'registration' && <p><a href={visitors} target="_blank" rel="noopener noreferrer">Official CMEF visitor page</a></p>}
+      {link === 'guide' && <p><a href={guide}>China 240-Hour Visa-Free Transit Guide</a></p>}
+      {link === 'checker' && <p>Read the <a href={guide}>240-hour guide</a> and <a href={checker}>check your itinerary</a>.</p>}
+      {link === 'matchmaking' && <p><a href={matchmaking} target="_blank" rel="noopener noreferrer">iCMEF Matchmaking Center</a></p>}
+    </details>)}
+  </section>
+
+  <section>
+    <h2>Plan Your CMEF Shanghai Trip</h2>
+    <p>Planning to use China's 240-hour visa-free transit policy for CMEF?</p>
+    <p class="cta"><a href={checker}>Check your itinerary with the Jadebound 240-hour transit checker →</a></p>
+    <p>Or read the <a href={guide}>China 240-Hour Visa-Free Transit Guide</a> and <a href={usGuide}>Do U.S. Citizens Need a Visa for China?</a></p>
+  </section>
+  <section>
+    <h2 id="sources">Official Sources</h2>
+    <p>Checked November 24, 2026. Recheck registration, entry policies, the floorplan, programs and Shanghai travel guidance before your April trip.</p>
+    <ul>{sources.map(([url, label]) => <li><a href={url} target="_blank" rel="noopener noreferrer">{label}</a></li>)}</ul>
+  </section>
+</main>
+<style>
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+  }
+
+  header {
+    margin-bottom: 48px;
+  }
+
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    list-style: none;
+    padding: 0;
+    margin-top: 16px;
+  }
+
+  nav li + li {
+    margin-top: 0;
+  }
+
+  details {
+    border-bottom: 1px solid #d1d5db;
+    padding: 16px 0;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  details p {
+    margin: 16px 0 0;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 4px;
+  }
+
+  .route-table table {
+    min-width: 600px;
+  }
+
+  .deadline-note {
+    padding: 24px;
+    border: 2px solid #b45309;
+    border-radius: 8px;
+    background: #fffbeb;
+  }
+
+  .deadline-note h3 {
+    margin-top: 0;
+  }
+
+  main {
+    overflow-wrap: anywhere;
+  }
+
+  h2[id] {
+    scroll-margin-top: 24px;
+  }
+
+  .table-wrap th[scope="row"] {
+    width: 35%;
+  }
+
+
+  .table-hint {
+    font-size: 0.875rem;
+    color: #4b5563;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.15;
+    margin: 0 0 12px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin: 56px 0 20px;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin: 32px 0 12px;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  p {
+    margin: 0 0 18px;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 20px;
+    padding-left: 28px;
+  }
+
+  li + li {
+    margin-top: 8px;
+  }
+
+  section {
+    margin-top: 48px;
+  }
+
+  section:first-of-type {
+    margin-top: 0;
+    padding: 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+  }
+
+  section:first-of-type h2 {
+    margin-top: 0;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  th {
+    background: #f3f4f6;
+  }
+
+  a {
+    color: #1d4ed8;
+  }
+
+  .cta {
+    margin: 24px 0;
+    padding: 16px 18px;
+    border-left: 4px solid #1d4ed8;
+    background: #eff6ff;
+  }
+
+  .cta a {
+    font-weight: 700;
+  }
+
+  @media (max-width: 700px) {
+    th,
+    td {
+      padding: 8px;
+    }
+
+    main {
+      padding: 32px 18px 60px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    section:first-of-type {
+      padding: 20px;
+    }
+  }
+</style>
