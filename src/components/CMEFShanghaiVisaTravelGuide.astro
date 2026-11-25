@@ -27,8 +27,8 @@ const facts = [
   ['April 9', '9:00 AM–5:00 PM'], ['April 10', '9:00 AM–4:00 PM'],
   ['Venue', 'National Exhibition and Convention Center (Shanghai)'],
   ['Address', '333 Songze Avenue, Qingpu District, Shanghai'], ['Expected exhibitors', '5,000+'],
-  ['Expected professional visitors', '300,000+'], ['Show area', '320,000 sqm'],
-  ['Countries & regions represented', '150+'], ['Conferences', '100+'],
+  ['Expected professional visitors', '300,000+'],
+  ['Countries & regions represented', '150+'],
 ];
 const routes = [
   ['U.S. → Shanghai → Hong Kong', 'Can meet the transit-route requirement'],
@@ -38,10 +38,10 @@ const routes = [
   ['Hong Kong → Shanghai → Hong Kong', 'Does not meet the requirement'],
 ];
 const faqs = [
-  ['When is CMEF Shanghai 2027?', 'CMEF Shanghai 2027 runs April 7–10, 2027.'],
+  ['When is CMEF Shanghai 2027?', 'CMEF Shanghai 2027 will take place from April 7 to April 10, 2027.'],
   ['What are the opening hours?', '9:00 AM–5:00 PM on April 7–9 and 9:00 AM–4:00 PM on April 10, Shanghai time.'],
   ['Where is CMEF Shanghai held?', 'At the National Exhibition and Convention Center (Shanghai), 333 Songze Avenue, Qingpu District.'],
-  ['Is CMEF visitor registration open?', 'The official visitor page currently offers a Visitor Center / Register link. A specific public 2027 registration deadline is not yet published. We could not verify completion of the registration flow; check that the system offers the April 2027 Shanghai edition.', 'registration'],
+  ['Is CMEF Shanghai 2027 visitor registration open?', 'We could not confirm this as of November 24, 2026. Although CMEF provides a link to its registration portal, the portal displayed a blank page during our checks. Visit the official CMEF visitor page for the latest registration information.', 'registration'],
   ['Is CMEF free to attend?', 'The current public 2027 visitor page does not clearly publish an admission fee. Check the official Visitor Center during registration rather than assuming admission is free.'],
   ['Can I attend CMEF Shanghai without a Chinese visa?', 'Possibly. Your passport and itinerary determine your options. Most current unilateral 30-day exemptions are confirmed only through December 31, 2026, so recheck the policy for April 2027. Eligible travelers may also qualify for 240-hour visa-free transit.', 'guide'],
   ['Will UK, Canadian or Australian passport holders be visa-free for CMEF 2027?', 'That is not yet confirmed under the current unilateral policy. These countries are covered by the present 30-day exemption, but its published validity ends December 31, 2026. Check again after China publishes or extends its 2027 policy.'],
@@ -82,35 +82,29 @@ const sources = [
   <section>
     <h2>Quick Answer</h2>
     <p><strong>CMEF Shanghai 2027</strong> will be held <strong>April 7–10, 2027</strong> at the <strong>National Exhibition and Convention Center (Shanghai)</strong>.</p>
-    <p>The organizer already links to its online <a href={visitors} target="_blank" rel="noopener noreferrer">Visitor Center</a>. Confirm the Shanghai 2027 edition in the registration system before submitting your details.</p>
-    <p>The visitor page advertises <strong>5,000+ exhibitors, 300,000+ professionals, 320,000 sqm of exhibition space, 150+ countries and regions, and 100+ conferences</strong>.</p>
+    <p>The organizer links to its online <a href={visitors} target="_blank" rel="noopener noreferrer">Visitor Center</a>, but the registration portal displayed a blank page during our checks. <strong>We could not confirm whether April 2027 visitor registration is open.</strong></p>
+    <p>The organizer advertises <strong>5,000+ exhibitors, 300,000+ professionals and 150+ countries and regions</strong>.</p>
     <p>For an international medical-industry visit, plan four things early:</p>
-    <ol><li>Register for the exhibition.</li><li>Determine how you will enter China.</li><li>Choose your Shanghai airport and hotel.</li><li>Identify priority exhibitors or meetings before arriving.</li></ol>
+    <ol><li>Check registration updates and register when availability is confirmed.</li><li>Determine how you will enter China.</li><li>Choose your Shanghai airport and hotel.</li><li>Identify priority exhibitors or meetings before arriving.</li></ol>
     <p class="cta"><a href={checker}>Check your itinerary with the Jadebound 240-hour transit checker →</a></p>
   </section>
 
   <section>
     <h2 id="at-a-glance">CMEF Shanghai 2027 at a Glance</h2>
-    <p>Opening hours below are in Shanghai time.</p>
+    <p>Opening hours below are in Shanghai time. The exhibitor, professional visitor and country figures are advertised by the organizer.</p>
     <div class="table-wrap" tabindex="0" role="region" aria-label="CMEF Shanghai event essentials">
       <table><tbody>{facts.map(([label, value]) => <tr><th scope="row">{label}</th><td>{value}</td></tr>)}</tbody></table>
     </div>
-    <p>The scale matters: thousands of exhibitors across 320,000 square meters are difficult to navigate efficiently without advance planning. The official <a href={exhibitors} target="_blank" rel="noopener noreferrer">exhibitor search</a> and Visitor Center links are already available, while the <a href={visitors} target="_blank" rel="noopener noreferrer">2027 Layout &amp; Floorplan</a> is currently marked <strong>Coming Soon</strong>.</p>
-    <p class="source-note">The figures above follow the current visitor page. The homepage also contains a separate block showing 270,000 sqm and 170+ conferences; the organizer's pages are not fully consistent. Treat the scale figures as organizer estimates and recheck closer to April.</p>
+    <p>Thousands of exhibitors make advance planning important. Use the official <a href={exhibitors} target="_blank" rel="noopener noreferrer">exhibitor search</a> to identify priority companies. The <a href={visitors} target="_blank" rel="noopener noreferrer">2027 Layout &amp; Floorplan</a> is currently marked <strong>Coming Soon</strong>. The Visitor Center is linked, but whether April 2027 registration is open remains unconfirmed.</p>
   </section>
 
   <!-- Refresh early 2027: deadline, fee, registration availability and entry documents. -->
   <section>
     <h2 id="registration">How to Register for CMEF Shanghai 2027</h2>
-    <ol>
-      <li>Go to the <a href={visitors} target="_blank" rel="noopener noreferrer">official CMEF visitor page</a>.</li>
-      <li>Select <a href={registration} target="_blank" rel="noopener noreferrer">Visitor Center / Register</a> and check that the exhibition is Shanghai, April 7–10, 2027.</li>
-      <li>Complete registration using your real personal and business information.</li>
-      <li>Save the registration confirmation or credential issued by the system.</li>
-    </ol>
-    <p>The official site currently offers registration links. We could not verify completion of the portal's registration flow, so check the edition and availability in the system.</p>
-    <p><strong>As of November 24, 2026, the public 2027 visitor page does not yet publish a specific registration deadline, admission fee, or detailed international visitor entry-document requirements.</strong> Do not assume admission is free.</p>
-    <p>Because CMEF is still several months away, these details may be updated closer to April.</p>
+    <p>The official CMEF website provides a link to its online <a href={registration} target="_blank" rel="noopener noreferrer">Visitor Center</a> for registration.</p>
+    <p>However, as of November 24, 2026, the registration portal displayed a blank page when we tried to access it. We could not confirm whether visitor registration for the April 2027 Shanghai exhibition is open.</p>
+    <p>The organizer has also not yet published a specific registration deadline, admission fee or detailed international visitor registration requirements on its public visitor page.</p>
+    <p>Check the <a href={visitors} target="_blank" rel="noopener noreferrer">official CMEF visitor page</a> for updates as the exhibition approaches.</p>
   </section>
 
   <!-- Refresh early 2027: re-read the live MFA FAQ, including validity exceptions. -->
@@ -152,9 +146,11 @@ const sources = [
   <section>
     <h2 id="invitation-letters">Can CMEF Provide a Visa Invitation Letter?</h2>
     <p><strong>A 2027-specific international visitor invitation-letter procedure or deadline has not yet been confirmed on the current CMEF site.</strong> An older edition's invitation form should not be treated as valid for April 2027.</p>
-    <p>The current official site lists this <strong>Visitor &amp; Marketing</strong> contact:</p>
-    <p><strong>Hazel Zhen</strong><br />Email: <a href="mailto:hongyue.zhen@reedsinopharm.com">hongyue.zhen@reedsinopharm.com</a><br />Tel: <a href="tel:+861084556578">+86-10-84556578</a></p>
-    <p>If you need an invitation letter now, explain that you plan to attend the <strong>April 7–10, 2027 Shanghai exhibition</strong>. Ask whether a visa invitation letter is available for international trade visitors, which documents are required, and when applications open or close.</p>
+    <p>The current official site lists these <strong>Visitor &amp; Marketing</strong> contacts:</p>
+    <p><strong>Hazel Zhen</strong><br />Email: <a href="mailto:hongyue.zhen@reedsinopharm.com">hongyue.zhen@reedsinopharm.com</a><br />Tel: <a href="tel:+861084556578">+86 10 84556578</a></p>
+    <p><strong>Tiana Cheng</strong><br />Email: <a href="mailto:wentao.cheng@reedsinopharm.com">wentao.cheng@reedsinopharm.com</a><br />Tel: <a href="tel:+861084556625">+86 10 84556625</a></p>
+    <p>If you need a visa invitation letter, contact the CMEF Visitor &amp; Marketing team and explain that you plan to attend the <strong>April 7–10, 2027 Shanghai exhibition</strong>. Ask whether invitation letters are available for April 2027 trade visitors, how to apply, which documents are required, and what the application opening dates and deadlines are.</p>
+    <p>If you do not receive a response from one contact, try the other. Neither is confirmed as a dedicated visa invitation-letter contact.</p>
     <p>We will update this section when CMEF publishes a specific 2027 invitation-letter procedure.</p>
   </section>
 
@@ -162,7 +158,7 @@ const sources = [
     <h2 id="venue">Where Is CMEF Shanghai 2027 Held?</h2>
     <p><strong>National Exhibition and Convention Center (Shanghai)</strong><br />333 Songze Avenue<br />Qingpu District<br />Shanghai, China</p>
     <p>The venue is commonly abbreviated <strong>NECC (Shanghai)</strong>. Its <a href={venueTransport} target="_blank" rel="noopener noreferrer">official transport page (Chinese)</a> places it approximately <strong>1.5 km in a straight line from Hongqiao Transportation Hub</strong>; that is not a walking or driving distance.</p>
-    <p>With approximately 320,000 sqm advertised for CMEF, save priority exhibitors and their hall locations before arriving. The venue address alone will not tell you which entrance is best for your meetings.</p>
+    <p>Save priority exhibitors and their hall locations before arriving. The venue address alone will not tell you which entrance is best for your meetings.</p>
   </section>
 
   <section>
@@ -205,21 +201,21 @@ const sources = [
   <section>
     <h2 id="floorplan">The 2027 Floorplan Is Not Available Yet</h2>
     <p>As of November 24, 2026, the <a href={visitors} target="_blank" rel="noopener noreferrer">official CMEF visitor page</a> says <strong>Layout &amp; Floorplan — Coming Soon</strong>. No publication date is given.</p>
-    <p>Once published, use it with the exhibitor search to group meetings by hall. Repeated walks between distant halls can consume significant time at a 320,000 sqm exhibition. Do not substitute the older Beijing floorplan found in the downloads.</p>
+    <p>Once published, use it with the exhibitor search to group meetings by hall. Repeated walks between distant halls can consume significant time. Do not substitute the older Beijing floorplan found in the downloads.</p>
     <p>We recommend checking the CMEF floorplan again in early 2027.</p>
   </section>
 
   <!-- Refresh early 2027: detailed April schedule and Coming Soon program links. -->
   <section>
     <h2 id="program">Conferences and Programs</h2>
-    <p>The visitor page advertises <strong>100+ conferences</strong>, but the detailed April 2027 program is not yet fully published. Some links on the <a href={program} target="_blank" rel="noopener noreferrer">official program page</a> still say <strong>Coming Soon</strong>.</p>
+    <p>The detailed April 2027 program is not yet fully published. Some links on the <a href={program} target="_blank" rel="noopener noreferrer">official program page</a> still say <strong>Coming Soon</strong>.</p>
     <p>If conferences, market-entry sessions or technical programs are important to your trip, check the official program again closer to the event rather than planning around a preliminary schedule.</p>
   </section>
 
   <section>
     <h2 id="checklist">CMEF Shanghai 2027 Travel Checklist</h2>
     <ul>
-      <li>Register through the official CMEF Visitor Center, checking the edition.</li>
+      <li>Check the official CMEF visitor page for registration updates and register once availability for April 2027 is confirmed.</li>
       <li>Recheck China's visa and visa-free policies for April 2027.</li>
       <li>If using 240-hour transit, <a href={checker}>check your complete itinerary with the Jadebound checker</a>.</li>
       <li>Ask CMEF about a 2027 invitation letter if you need one.</li>
